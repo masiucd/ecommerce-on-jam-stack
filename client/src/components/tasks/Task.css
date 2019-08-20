@@ -1,6 +1,12 @@
 .taskItem {
   background: #333;
   padding: .5rem;
+
+}
+
+.taskItem svg {
+  color: #fff;
+  fill: #fff;
 }
 
 .taskItem span,
@@ -12,5 +18,15 @@ a {
 .taskItem a {
   font-size: 22px;
   font-weight: 500;
-  ;
+}
+
+.delete-icon {
+  fill: #fff !important;
+  color: #fff !important;
+
+}
+
+[src="/static/media/del2.7f9f8f45.svg"i] {
+  color: #fff !important;
+  fill: #fff !important;
 }

@@ -59,12 +59,12 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
-    if (!task) return res.json({ msg: 'No task with this ID' });
+    if (!task) return res.status(401).json({ msg: 'No task with this ID' });
     await Task.findByIdAndRemove(req.params.id);
     res.json({ msg: 'Task removed' });
   } catch (err) {
     res.send(500).json({ err: 'server error, status 500' });
   }
 });
-
+//
 module.exports = router;

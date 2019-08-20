@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min.js';
-import { addTask } from '../../actions/taskActions';
+import { updateTask } from '../../actions/taskActions';
 
-const AddTask = ({ addTask }) => {
+const EditTask = ({ updateTask }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [user, setUser] = useState('');
@@ -15,29 +15,11 @@ const AddTask = ({ addTask }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (message === '' || user === '') {
-      M.toast({ html: 'please fill in the fields' });
-    } else {
-      const newTask = {
-        message,
-        attention,
-        user,
-        date: new Date(),
-      };
-
-      addTask({ message, attention, user, date: new Date() });
-      // addTask({ newTask });
-      M.toast({ html: `Task added by` });
-
-      setMessage('');
-      setAttention(false);
-      setUser('');
-    }
   };
 
   return (
     <form
-      id="add-task-modal"
+      id="edit-task-modal"
       className="modal"
       style={modalStyle}
       onSubmit={handleSubmit}
@@ -106,8 +88,8 @@ const AddTask = ({ addTask }) => {
   );
 };
 
-AddTask.propTypes = {
-  addTask: PropTypes.func.isRequired,
+EditTask.propTypes = {
+  EditTask: PropTypes.func.isRequired,
 };
 
 const modalStyle = {
@@ -117,5 +99,5 @@ const modalStyle = {
 
 export default connect(
   null,
-  { addTask }
-)(AddTask);
+  { EditTask }
+)(EditTask);

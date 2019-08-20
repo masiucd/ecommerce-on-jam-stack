@@ -1,16 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
 import './Task.css';
+import { connect } from 'react-redux';
+import M from 'materialize-css/dist/js/materialize.min.js';
+import { deleteTask, setCurrent } from '../../actions/taskActions';
+import deleteIcon from '../../images/del2.svg';
 
-const TaskItem = ({ task }) => {
-  let a;
+const TaskItem = ({ task, deleteTask, setCurrent }) => {
+  const handleDelete = () => {
+    deleteTask(task._id);
+    M.toast({ html: 'Task Deleted' });
+  };
+
   return (
     <li>
       <div className="taskItem">
         <a
-          href="#edit-task"
+          href="#edit-task-modal"
           className={`modal-trigger ${task.vip ? 'red-text' : 'blue-text'} `}
+          onClick={() => setCurrent(task)}
         >
           {task.message}
         </a>
@@ -31,8 +39,16 @@ const TaskItem = ({ task }) => {
             {task.completed ? 'Completed' : 'Not completed'}
           </span>
         </span>
-        <a href="#!" className="secondary-content">
-          <i className="material-icons grey-text">delete</i>
+        <a href="#!" className="secondary-content" onClick={handleDelete}>
+          <i className="material-icons grey-text">
+            {' '}
+            <img
+              className="delete-icon"
+              src={deleteIcon}
+              alt="delete icon"
+              width="34"
+            />{' '}
+          </i>
         </a>
       </div>
     </li>
@@ -41,6 +57,11 @@ const TaskItem = ({ task }) => {
 
 TaskItem.propTypes = {
   task: PropTypes.object.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  setCurrent: PropTypes.func.isRequired,
 };
 
-export default TaskItem;
+export default connect(
+  null,
+  { deleteTask, setCurrent }
+)(TaskItem);
