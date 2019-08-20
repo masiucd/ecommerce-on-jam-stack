@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import { updateTask } from '../../actions/taskActions';
+import UserSelect from '../layout/UserSelect';
 
-const EditTask = ({ updateTask }) => {
+const EditTask = ({ updateTask, tasks: { current } }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [user, setUser] = useState('');
 
-  // message,
-  // completed,
-  // attention,
+  useEffect(() => {
+    if (current) {
+      setMessage(current.message);
+      setAttention(current.attention);
+      setUser(current.user);
+    }
+  }, [current]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -25,7 +30,7 @@ const EditTask = ({ updateTask }) => {
       onSubmit={handleSubmit}
     >
       <div className="modal-content">
-        <h4>Enter Task</h4>
+        <h4>Edit Task</h4>
         <div className="row">
           <div className="input-field">
             <input
@@ -51,8 +56,7 @@ const EditTask = ({ updateTask }) => {
               <option value="" disabled>
                 Select User
               </option>
-              <option value="James">James</option>
-              <option value="Boris">Boris</option>
+              <UserSelect />
             </select>
           </div>
         </div>
@@ -90,6 +94,7 @@ const EditTask = ({ updateTask }) => {
 
 EditTask.propTypes = {
   EditTask: PropTypes.func.isRequired,
+  tasks: PropTypes.object.isRequired,
 };
 
 const modalStyle = {
@@ -97,7 +102,9 @@ const modalStyle = {
   height: '75%',
 };
 
+const mapStateToProps = state => ({ tasks: state.taskState });
+
 export default connect(
-  null,
+  mapStateToProps,
   { EditTask }
 )(EditTask);

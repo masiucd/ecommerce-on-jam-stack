@@ -5,6 +5,8 @@ import SearchBar from './components/layout/SearchBar';
 import Tasks from './components/tasks/Tasks';
 import AddBtn from './components/layout/AddBtn';
 import AddTask from './components/tasks/AddTask';
+import EditTask from './components/tasks/EditTask';
+import UsersList from './components/users/UsersList';
 
 function App() {
   useEffect(() => {
@@ -16,6 +18,8 @@ function App() {
       <div className="container">
         <AddBtn />
         <AddTask />
+        <EditTask />
+        <UsersList />
         <Tasks />
       </div>
     </>
