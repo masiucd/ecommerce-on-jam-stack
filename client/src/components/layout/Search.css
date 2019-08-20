@@ -1,0 +1,16 @@
+nav {
+  background: #1de9b6;
+  color: #333;
+}
+
+#search-icon {
+  position: absolute;
+  top: 12px;
+}
+
+
+::placeholder {
+  color: #333;
+  font-size: 16px;
+  text-transform: uppercase;
+}

@@ -1,0 +1,16 @@
+.taskItem {
+  background: #333;
+  padding: .5rem;
+}
+
+.taskItem span,
+a {
+  /* margin: .4rem; */
+  font-size: 20px;
+}
+
+.taskItem a {
+  font-size: 22px;
+  font-weight: 500;
+  ;
+}
