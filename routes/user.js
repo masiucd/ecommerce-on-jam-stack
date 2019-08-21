@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
       email,
       skills,
       // task: req.task,
+      // task: req.task._id,
     });
     await newUser.save();
     res.json(newUser);
