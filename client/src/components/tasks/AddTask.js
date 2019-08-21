@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import { addTask } from '../../actions/taskActions';
+import UserSelect from '../layout/UserSelect';
 
 const AddTask = ({ addTask }) => {
   const [message, setMessage] = useState('');
-  const [attention, setAttention] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [user, setUser] = useState('');
 
   // message,
   // completed,
-  // attention,
+  // completed,
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -20,17 +21,17 @@ const AddTask = ({ addTask }) => {
     } else {
       const newTask = {
         message,
-        attention,
+        completed,
         user,
         date: new Date(),
       };
 
-      addTask({ message, attention, user, date: new Date() });
+      addTask({ message, completed, user });
       // addTask({ newTask });
       M.toast({ html: `Task added by` });
 
       setMessage('');
-      setAttention(false);
+      setCompleted(false);
       setUser('');
     }
   };
@@ -69,8 +70,7 @@ const AddTask = ({ addTask }) => {
               <option value="" disabled>
                 Select User
               </option>
-              <option value="James">James</option>
-              <option value="Boris">Boris</option>
+              <UserSelect />
             </select>
           </div>
         </div>
@@ -79,16 +79,16 @@ const AddTask = ({ addTask }) => {
       <div className="row">
         <div className="input-field">
           <p style={{ marginLeft: '25px' }}>
-            <label htmlFor="attention">
+            <label htmlFor="completed">
               <input
                 type="checkbox"
-                name="attention"
-                className="filled-in"
-                checked={attention}
-                value={attention}
-                onChange={e => setAttention(!attention)}
+                checked={completed}
+                value={completed}
+                onChange={() => setCompleted(!completed)}
+                name="completed"
+                id="completed"
               />
-              <span>Needs Attention</span>
+              <span>Needs completed</span>
             </label>
           </p>
         </div>

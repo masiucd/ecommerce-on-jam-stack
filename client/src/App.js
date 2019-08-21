@@ -7,6 +7,7 @@ import AddBtn from './components/layout/AddBtn';
 import AddTask from './components/tasks/AddTask';
 import EditTask from './components/tasks/EditTask';
 import UsersList from './components/users/UsersList';
+import AddUser from './components/users/AddUser';
 
 function App() {
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
         <AddBtn />
         <AddTask />
         <EditTask />
+        <AddUser />
         <UsersList />
         <Tasks />
       </div>

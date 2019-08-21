@@ -8,13 +8,13 @@ const router = express.Router();
 // @ public
 
 router.post('/', async (req, res) => {
-  const { name, email, skills, task } = req.body;
+  const { name, email, skills } = req.body;
   try {
     const newUser = new User({
       name,
       email,
       skills,
-      task: req.task,
+      // task: req.task,
     });
     await newUser.save();
     res.json(newUser);

@@ -25,12 +25,14 @@ export const addUser = formData => async dispatch => {
       'Content-Type': 'application/json',
     },
   };
+
   try {
     setLoading();
-    const res = await axios.post('api/users', formData, config);
+    const res = await axios.post('/api/users', formData, config);
     dispatch({ type: ADD_USER, payload: res.data });
   } catch (err) {
-    dispatch({ type: USER_ERROR, payload: err.message });
+    // dispatch({ type: USER_ERROR, payload: err.message });
+    console.log(err);
   }
 };
 export const DeleteUser = id => async dispatch => {

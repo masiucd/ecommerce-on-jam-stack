@@ -22,7 +22,7 @@ export default (state = initialState, { type, payload }) => {
     case ADD_USER:
       return {
         ...state,
-        users: [...state.users, payload],
+        users: [payload, ...state.users],
         loading: false,
       };
     case DELETE_USER:

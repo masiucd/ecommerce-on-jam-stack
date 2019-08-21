@@ -23,7 +23,7 @@ const TaskItem = ({ task, deleteTask, setCurrent }) => {
           {task.message}
         </a>
         <br />
-        <span className="white-text">
+        <span className="grey-text">
           <span className="teal lighten-4">
             ID-number #{Math.floor(Math.random() * 100)}{' '}
           </span>

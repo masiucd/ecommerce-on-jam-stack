@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getTasks } from '../../actions/taskActions';
 import TaskItem from './TaskItem';
 import PreLoader from '../layout/PreLoader';
+import './tasks.css';
 
 const Tasks = ({ taskState: { tasks, loading, filtered }, getTasks }) => {
   useEffect(() => {
@@ -13,17 +14,15 @@ const Tasks = ({ taskState: { tasks, loading, filtered }, getTasks }) => {
   return (
     <>
       <ul className="collection with-header">
-        <li className="collection-header">
-          <h4 className="center">System Logs</h4>
-        </li>
+        <div className="collection-header">
+          <h4 className="center">System Tasks</h4>
+        </div>
         {tasks !== null && !loading ? (
           <>
             {' '}
-            ({' '}
             {filtered !== null
               ? filtered.map(task => <TaskItem key={task._id} task={task} />)
               : tasks.map(task => <TaskItem key={task._id} task={task} />)}{' '}
-            ){' '}
           </>
         ) : (
           <PreLoader />
