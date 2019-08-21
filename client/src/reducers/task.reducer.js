@@ -6,12 +6,15 @@ import {
   TASKS_ERROR,
   SET_CURRENT,
   UPDATE_TASK,
+  SEARCH_TASKS,
+  CLEAR_SEARCH,
 } from '../actions/types';
 
 const initialState = {
   tasks: null,
   loading: false,
   current: null,
+  filtered: null,
   error: null,
 };
 
@@ -49,10 +52,23 @@ export default (state = initialState, { type, payload }) => {
         ),
         loading: false,
       };
+    case SEARCH_TASKS:
+      return {
+        ...state,
+        filtered: state.tasks.filter(task => {
+          const reg = new RegExp(`${payload}`, 'gi');
+          return task.message.match(reg);
+        }),
+      };
     case SET_CURRENT:
       return {
         ...state,
         current: payload,
+      };
+    case CLEAR_SEARCH:
+      return {
+        ...state,
+        filtered: null,
       };
     case TASKS_ERROR:
       return {

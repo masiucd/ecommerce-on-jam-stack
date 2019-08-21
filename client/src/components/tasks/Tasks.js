@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getTasks } from '../../actions/taskActions';
 import TaskItem from './TaskItem';
+import PreLoader from '../layout/PreLoader';
 
-const Tasks = ({ taskState: { tasks, loading }, getTasks }) => {
+const Tasks = ({ taskState: { tasks, loading, filtered }, getTasks }) => {
   useEffect(() => {
     getTasks();
   }, []);
@@ -15,10 +16,17 @@ const Tasks = ({ taskState: { tasks, loading }, getTasks }) => {
         <li className="collection-header">
           <h4 className="center">System Logs</h4>
         </li>
-        {!loading && tasks !== null ? (
-          tasks.map(task => <TaskItem key={task._id} task={task} />)
+        {tasks !== null && !loading ? (
+          <>
+            {' '}
+            ({' '}
+            {filtered !== null
+              ? filtered.map(task => <TaskItem key={task._id} task={task} />)
+              : tasks.map(task => <TaskItem key={task._id} task={task} />)}{' '}
+            ){' '}
+          </>
         ) : (
-          <p className="center">No logs to show...</p>
+          <PreLoader />
         )}
       </ul>
     </>
@@ -36,3 +44,9 @@ export default connect(
   mapStateToProps,
   { getTasks }
 )(Tasks);
+
+// {!loading && tasks !== null ? (
+//   tasks.map(task => <TaskItem key={task._id} task={task} />)
+// ) : (
+//   <p className="center">No logs to show...</p>
+// )}

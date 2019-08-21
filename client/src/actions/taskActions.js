@@ -7,6 +7,8 @@ import {
   DELETE_TASKS,
   UPDATE_TASK,
   SET_CURRENT,
+  SEARCH_TASKS,
+  CLEAR_SEARCH,
 } from './types';
 
 const setLoading = () => ({ type: SET_LOADING });
@@ -63,5 +65,8 @@ export const updateTask = task => async dispatch => {
     dispatch({ type: TASKS_ERROR, payload: err.message });
   }
 };
+
+export const searchTasks = text => ({ type: SEARCH_TASKS, payload: text });
+export const clearSearch = () => ({ type: CLEAR_SEARCH });
 
 export const setCurrent = task => ({ type: SET_CURRENT, payload: task });
