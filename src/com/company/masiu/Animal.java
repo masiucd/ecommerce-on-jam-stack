@@ -2,6 +2,7 @@ package com.company.masiu;
 
 public class Animal {
 
+  private static String hiddenName;
   private final String name;
   private String animalType;
   private int legs;
@@ -10,6 +11,7 @@ public class Animal {
     this.name = name;
     this.animalType = animalType;
     this.legs = legs;
+    hiddenName = "Animal";
   }
 
   public int getLegs() {
@@ -18,6 +20,10 @@ public class Animal {
 
   public String myName() {
     return this.name;
+  }
+
+  static void greet() {
+    System.out.println("Hello I am a " + hiddenName + " and this is a static method!");
   }
 
   @Override

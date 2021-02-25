@@ -18,10 +18,16 @@ public class Main {
 
     int[] evens = even(xs);
 
-
     Dog bobbie = new Dog("bobbie", "Dog", 4);
+    int a = 99;
+    int b = 1;
 
-    System.out.println(bobbie.getLegs());
+    System.out.println(a);
+
+
+    mutateInt(a,24);
+    System.out.println(a);
+    Animal.greet();
   }
 
   static int addition(int a, int b) {
@@ -39,6 +45,16 @@ public class Main {
   static int sumWithForEach(int[] xs) {
     int res = Arrays.stream(xs).sum();
     return res;
+  }
+
+  static void mutateInt(int x,int target){
+    x = target;
+  }
+
+  static void swap(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
   }
 
   static String reverseString(String s) {
