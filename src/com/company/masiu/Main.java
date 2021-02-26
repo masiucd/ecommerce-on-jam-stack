@@ -14,20 +14,17 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    int[] xs = {1, 2, 3, 4, 5};
+    Math m = new Math(10, 20);
+    System.out.println(m);
+    Algo algo = new Algo();
 
-    int[] evens = even(xs);
+    String revString = algo.reverseString("hello");
+    print(revString);
 
-    Dog bobbie = new Dog("bobbie", "Dog", 4);
-    int a = 99;
-    int b = 1;
+  }
 
-    System.out.println(a);
-
-
-    mutateInt(a,24);
-    System.out.println(a);
-    Animal.greet();
+  public static <T> void print(T val){
+      System.out.println(val);
   }
 
   static int addition(int a, int b) {
@@ -47,7 +44,7 @@ public class Main {
     return res;
   }
 
-  static void mutateInt(int x,int target){
+  static void mutateInt(int x, int target) {
     x = target;
   }
 
@@ -57,13 +54,5 @@ public class Main {
     b = temp;
   }
 
-  static String reverseString(String s) {
-    String reversed = "";
-    char[] xs = s.toCharArray();
-    for (int i = 0; i < xs.length; i++) {
-      char foo = xs[i];
-      reversed = foo + reversed;
-    }
-    return reversed;
-  }
+  
 }
