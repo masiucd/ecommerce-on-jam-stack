@@ -11,4 +11,17 @@ public class Algo {
     }
     return revered;
   }
+
+  public int[] bubbleSort(int[] xs) {
+    for (int i = 0; i < xs.length; i++) {
+      for (int j = 0; j < xs.length - 1; j++) {
+        if (xs[j] > xs[j + 1]) {
+          int temp = xs[j];
+          xs[j] = xs[j + 1];
+          xs[j + 1] = temp;
+        }
+      }
+    }
+    return xs;
+  }
 }

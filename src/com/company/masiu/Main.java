@@ -1,5 +1,6 @@
 package com.company.masiu;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -21,10 +22,15 @@ public class Main {
     String revString = algo.reverseString("hello");
     print(revString);
 
+    int[] xs = {9, 2, 1, -2};
+    int[] res = algo.bubbleSort(xs);
+
+    print(res);
   }
 
-  public static <T> void print(T val){
-      System.out.println(val);
+  public static <T> void print(T val) {
+
+    System.out.println(val);
   }
 
   static int addition(int a, int b) {
@@ -53,6 +59,4 @@ public class Main {
     a = b;
     b = temp;
   }
-
-  
 }
