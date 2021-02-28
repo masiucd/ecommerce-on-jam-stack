@@ -3,6 +3,8 @@ package com.company.masiu;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.company.masiu.interfaces.FpStuff;
+
 public class Main {
 
   private static void printXs(int[] xs) {
@@ -15,19 +17,39 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    Math m = new Math(10, 20);
-    System.out.println(m);
-    Algo algo = new Algo();
+    String foo = "foo";
+    String boo = foo + "lol";
 
-    String revString = algo.reverseString("hello");
-    print(revString);
 
+    System.out.println(foo+" " + boo);
+  }
+
+  private static void handleCommandLine(String[] args) {
+    char opCode = args[0].charAt(0);
+    double leftVal = Double.parseDouble(args[1]);
+    double rightVal = Double.parseDouble(args[2]);
+
+    double result = execute(opCode, leftVal, rightVal);
+  }
+
+<<<<<<< HEAD
     int[] xs = {9, 2, 1, -2};
     int[] res = algo.bubbleSort(xs);
 
     print(res);
   }
 
+=======
+  private static double execute(char opCode, double leftVal, double rightVal) {
+    return 2321312;
+  }
+
+  // passing function as param
+  public static void invoke(FpStuff call, int param) {
+    call.call(param);
+  }
+
+>>>>>>> cbd5c77... feat primitive types in JAVA
   public static <T> void print(T val) {
 
     System.out.println(val);
