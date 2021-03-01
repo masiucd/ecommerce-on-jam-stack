@@ -5,6 +5,44 @@ import java.util.Scanner;
 
 public class Sandbox {
 
+  public String getUserInput() {
+    Scanner scanner = new Scanner(System.in);
+    String input = scanner.nextLine();
+    return input;
+  }
+
+  public void calc() {
+    System.out.println("give me number a");
+    String a = getUserInput();
+
+    System.out.println("give me number b");
+    String b = getUserInput();
+
+    System.out.println("give me a operation + - / ore *");
+    String op = getUserInput();
+    int result = execute(op, Integer.parseInt(a), Integer.parseInt(b));
+
+    System.out.println(result);
+  }
+
+  public int execute(String op, int a, int b) {
+    int res = 0;
+
+    if (op.equals("+")) {
+      res = a + b;
+    }
+    if (op.equals("-")) {
+      res = a - b;
+    }
+    if (op.equals("/")) {
+      res = a / b;
+    }
+    if (op.equals("*")) {
+      res = a * b;
+    }
+    return res;
+  }
+
   public void guessGame() {
     Random randomNum = new Random();
     int rand = randomNum.nextInt(11);
@@ -37,11 +75,10 @@ public class Sandbox {
     }
   }
 
-  public static String askUser(int n) {
+  public String askUser(int n) {
     System.out.println("guess the correct number");
     System.out.println("correct number is " + n);
-    Scanner scanner = new Scanner(System.in);
-    String userInput = scanner.nextLine();
+    String userInput = this.getUserInput();
     return userInput;
   }
 }
