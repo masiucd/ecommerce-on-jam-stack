@@ -4,22 +4,15 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-<<<<<<< HEAD
-=======
 - [Primitive types](#primitive_types)
 - [Strings](#strings)
 - [Lists](#lists)
->>>>>>> cbd5c77... feat primitive types in JAVA
 
 ## About <a name = "about"></a>
 
 Basics stuff in java, nothing more!
 
-<<<<<<< HEAD
-## Primetime data types
-=======
 ## Primetime data types <a name = "primitive_types"></a>
->>>>>>> cbd5c77... feat primitive types in JAVA
 
 We have four categories in `Java` primitive types:
 
@@ -72,8 +65,6 @@ Simply stores true or false like another programing language.
   boolean yes = true;
   boolean no = false;
 ```
-<<<<<<< HEAD
-=======
 
 Primitive data types is stored by value in `Java` and not by reference like in some languages.
 So if we pass some variables to a method and try to mutate them in there we will not change the variables that is one scope above.
@@ -117,4 +108,3 @@ The `ArrayList` class is a dynamic array, which can be found in the java.util pa
 
 The difference between a built-in array and an `ArrayList` in `Java`. The built in Array in Java is a static array while the `ArrayList` is dynamic
 and we can add remove elements to the list without creating a new one.
->>>>>>> cbd5c77... feat primitive types in JAVA
