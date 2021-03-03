@@ -2,6 +2,7 @@ package com.company.masiu;
 
 import java.awt.List;
 import java.sql.Array;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,14 +12,12 @@ import java.util.stream.IntStream;
 public class Main {
 
   public static void main(String[] args) {
-    int a = 1, b = 22, c = 21312321;
+    int a = 2, b = 22, c = 212;
 
-    String p = String.format("W:%04d  X:%04d", a, b);
-    String p2 = String.format("W:%-4d  X:%-4d", a, b);
-    String p3 = String.format("%,d", c);
-    print(p);
-    print(p2);
-    print(p3);
+//    Labeled arguments
+    String s1 = String.format("%3$d, %2$d, %1$d", c, a, b);
+
+    print(s1);
 
     Fp fp = new Fp();
     ArrayList<String> xs = new ArrayList<String>();
@@ -31,6 +30,10 @@ public class Main {
     int sum = fp.sumIntList(integerList);
     print(sum);
     print(xs);
+    Instant i = Instant.now();
+    Time t = new Time();
+    t.checkRelationship(i);
+
   }
 
   public static <T> void print(T a) {

@@ -108,3 +108,16 @@ The `ArrayList` class is a dynamic array, which can be found in the java.util pa
 
 The difference between a built-in array and an `ArrayList` in `Java`. The built in Array in Java is a static array while the `ArrayList` is dynamic
 and we can add remove elements to the list without creating a new one.
+
+### Labeled string format
+
+This is a really cool feature in `Java` where we can label the arguments when formatting a string.
+
+```java
+int a = 2, b = 22, c = 212;
+
+//    Labeled arguments
+String s1 = String.format("%3$d, %2$d, %1$d", c, a, b);
+
+// 22 , 2 , 212
+```
