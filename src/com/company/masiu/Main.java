@@ -30,10 +30,10 @@ public class Main {
     int sum = fp.sumIntList(integerList);
     print(sum);
     print(xs);
-    Instant i = Instant.now();
-    Time t = new Time();
-    t.checkRelationship(i);
 
+    Time t = new Time();
+    t.now();
+    t.parseToUseData();
   }
 
   public static <T> void print(T a) {
