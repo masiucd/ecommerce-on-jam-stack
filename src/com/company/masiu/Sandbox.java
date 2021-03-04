@@ -81,4 +81,11 @@ public class Sandbox {
     String userInput = this.getUserInput();
     return userInput;
   }
+
+  public void intToHex(int n) {
+    String s = String.format("%#x", n);
+    String sS = String.format("%#X", n);
+    System.out.println(s);
+    System.out.println(sS);
+  }
 }

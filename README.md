@@ -7,6 +7,7 @@
 - [Primitive types](#primitive_types)
 - [Strings](#strings)
 - [Lists](#lists)
+- [Classes](#classes)
 
 ## About <a name = "about"></a>
 
@@ -121,3 +122,39 @@ String s1 = String.format("%3$d, %2$d, %1$d", c, a, b);
 
 // 22 , 2 , 212
 ```
+
+## Classes <a name="classes"></a>
+
+Classes in `java` are not primitive types they are stored by reference and are reference typed.
+For example:
+
+```java
+  Person p1 = new Person("Bob","Smith");
+  Person p2 = new Person("Bob","Smith");
+
+  p1 == p2; // false
+  p1.equals(p2); // false
+```
+
+sore what if we resign the `p1` to `p2` like this.
+
+```java
+  p1 = p2;
+```
+
+now `p1` will point to `p2` as a reference and `p1==p2` will be `true` .
+
+Here is a another example:
+
+```java
+    Flight f1 = new Flight(150);
+    Flight f2 = new Flight(150);
+
+    print(f1.toString()); // {passengers:0, seats:150}
+    f2 = f1;
+    f2.addPassenger(100);
+    print(f1.toString()); // {passengers:100, seats:150}
+    print(f2.toString()); // {passengers:100, seats:150}
+```
+
+<img src="./classes.svg" />
