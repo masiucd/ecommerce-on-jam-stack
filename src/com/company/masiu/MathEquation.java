@@ -2,10 +2,10 @@ package com.company.masiu;
 
 public class MathEquation {
 
-  double leftValue;
-  double rightValue;
-  char opCode;
-  double result;
+  private double leftValue;
+  private double rightValue;
+  private char opCode;
+  public double result;
 
   public MathEquation(double leftValue, double rightValue, char opCode) {
     this.leftValue = leftValue;
