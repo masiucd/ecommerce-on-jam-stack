@@ -1,11 +1,18 @@
 package com.company.masiu;
 
-public class MathEquations {
+public class MathEquation {
 
   double leftValue;
   double rightValue;
   char opCode;
   double result;
+
+  public MathEquation(double leftValue, double rightValue, char opCode) {
+    this.leftValue = leftValue;
+    this.rightValue = rightValue;
+    this.opCode = opCode;
+    this.result = 0d;
+  }
 
   void execute() {
     switch (opCode) {
