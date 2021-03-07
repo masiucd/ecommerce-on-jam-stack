@@ -2,7 +2,7 @@ package com.company.masiu;
 
 import java.util.Arrays;
 
-import com.company.masiu.interfaces.Card;
+
 
 public class Main {
 
@@ -17,6 +17,7 @@ public class Main {
     movie.addMovie("Batman", 100);
 
 //    print(movie.canSeeTheMovie("Batman",150));
+    movie.init();
 
   }
 
