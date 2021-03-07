@@ -2,33 +2,57 @@ package com.company.masiu;
 
 public class Flight {
 
-  int passenger;
-  int seats;
+  int passengers, seats;
+  private static int allPassengers;
   String destination;
 
   public Flight(int seats) {
-    this.passenger = 0;
+    this.passengers = 0;
     this.seats = seats;
     this.destination = "";
   }
 
-  void addPassenger(int passenger) {
-    this.passenger = passenger;
+  public static int getAllPassengers() {
+    return allPassengers;
   }
 
-  void updateSeats(int seats){
+  public static void resetAllPassengers() {
+    allPassengers = 0;
+  }
+
+  void addOnePassenger() {
+    if (passengers < seats) {
+      passengers += 1;
+      allPassengers += 1;
+    }
+  }
+
+  void updateSeats(int seats) {
     this.seats = seats;
   }
 
-  void setDestination(String destination){
+  void setDestination(String destination) {
     this.destination = destination;
+  }
+
+  public int getPassengers() {
+    return passengers;
+  }
+
+  public int getSeats() {
+    return seats;
+  }
+
+  public String getDestination() {
+    return destination;
   }
 
   @Override
   public String toString() {
     return "Flight{" +
-           "passenger=" + passenger +
+           "passengers=" + passengers +
            ", seats=" + seats +
+           ", destination='" + destination + '\'' +
            '}';
   }
 }

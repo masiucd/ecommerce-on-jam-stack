@@ -13,11 +13,25 @@ public class Main {
 //    String x = c.getRandomCard();
 //    print(x);
 
-    Movie movie = new Movie();
-    movie.addMovie("Batman", 100);
+    Flight.resetAllPassengers();
+    Flight f = new Flight(21);
+    f.addOnePassenger();
+    f.addOnePassenger();
+    f.addOnePassenger();
+
+    Flight r = new Flight(111);
+    r.addOnePassenger();
+
+    print(r.toString());
+    print(Flight.getAllPassengers());
+
+//    Movie movie = new Movie();
+//    movie.addMovie("Batman", 100);
+//    movie.addMovie("Vikings",20);
+//    movie.addMovie("Harry-Potter",120);
 
 //    print(movie.canSeeTheMovie("Batman",150));
-    movie.init();
+//    movie.init();
 
   }
 
