@@ -12,10 +12,12 @@ public class Main {
 //    print(c.getHand());
 //    String x = c.getRandomCard();
 //    print(x);
-    Algo a = new Algo();
-    String code = "AAAAAAAAAAAAABBCCCCDD";
-    String res = a.runLengthEncoding(code);
-    print(res);
+
+    Movie movie = new Movie();
+    movie.addMovie("Batman", 100);
+
+//    print(movie.canSeeTheMovie("Batman",150));
+
   }
 
   private static MathEquation createEqautions(double leftValue, double rightValue, char opCode) {
