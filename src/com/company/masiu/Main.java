@@ -8,10 +8,14 @@ public class Main {
 
   public static void main(String[] args) {
 //    performCalculation();
-    Card c = new Card();
-    print(c.getHand());
-    String x = c.getRandomCard();
-    print(x);
+//    Card c = new Card();
+//    print(c.getHand());
+//    String x = c.getRandomCard();
+//    print(x);
+    Algo a = new Algo();
+    String code = "AAAAAAAAAAAAABBCCCCDD";
+    String res = a.runLengthEncoding(code);
+    print(res);
   }
 
   private static MathEquation createEqautions(double leftValue, double rightValue, char opCode) {

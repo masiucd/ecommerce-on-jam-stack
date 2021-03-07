@@ -8,7 +8,7 @@ import java.util.Random;
 public class Card {
 
   private String[] ranks;
-  private  String[] suits;
+  private String[] suits;
   private int[] hand;
 
   public Card() {

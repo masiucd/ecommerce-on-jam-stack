@@ -56,4 +56,23 @@ public class Algo {
     }
     return -1;
   }
+
+  public String runLengthEncoding(String input) {
+    StringBuilder chars = new StringBuilder();
+    int count = 1;
+    for (int i = 1; i < input.length(); i++) {
+      char current = input.charAt(i);
+      char prev = input.charAt(i - 1);
+      if ((current != prev) || (count == 9)) {
+        chars.append(Integer.toString(count));
+        chars.append(prev);
+        count = 0;
+      }
+      count += 1;
+    }
+
+    chars.append(Integer.toString(count));
+    chars.append(input.charAt(input.length() - 1));
+    return chars.toString();
+  }
 }
