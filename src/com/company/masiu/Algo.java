@@ -75,4 +75,18 @@ public class Algo {
     chars.append(input.charAt(input.length() - 1));
     return chars.toString();
   }
+
+  public int[] insertionSort(int[] xs) {
+    for (int i = 1; i < xs.length; i++) {
+      int j = i;
+      while (j > 0 && xs[j] < xs[j - 1]) {
+        int temp = xs[j];
+        xs[j] = xs[j - 1];
+        xs[j - 1] = temp;
+        j -= 1;
+      }
+    }
+
+    return xs;
+  }
 }

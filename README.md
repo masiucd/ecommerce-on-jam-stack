@@ -158,3 +158,111 @@ Here is a another example:
 ```
 
 <img src="./classes.svg" />
+
+## static fields <a name="static-fields"></a>
+
+```java
+public class Flight {
+
+  int passengers, seats;
+  private static int allPassengers;
+  String destination;
+
+  public Flight(int seats) {
+    this.passengers = 0;
+    this.seats = seats;
+    this.destination = "";
+  }
+
+  public static int getAllPassengers() {
+    return allPassengers;
+  }
+
+  public static void resetAllPassengers() {
+    allPassengers = 0;
+  }
+
+  void addOnePassenger() {
+    if (passengers < seats) {
+      passengers += 1;
+      allPassengers += 1;
+    }
+  }
+
+  void updateSeats(int seats) {
+    this.seats = seats;
+  }
+
+  void setDestination(String destination) {
+    this.destination = destination;
+  }
+
+  public int getPassengers() {
+    return passengers;
+  }
+
+  public int getSeats() {
+    return seats;
+  }
+
+  public String getDestination() {
+    return destination;
+  }
+
+  @Override
+  public String toString() {
+    return "Flight{" +
+           "passengers=" + passengers +
+           ", seats=" + seats +
+           ", destination='" + destination + '\'' +
+           '}';
+  }
+}
+
+```
+
+Now when we create our instances of the `Flight` class, using static methods.
+
+```java
+    Flight.resetAllPassengers();
+    Flight f = new Flight(21);
+    f.addOnePassenger();
+    f.addOnePassenger();
+    f.addOnePassenger();
+    f.getPassengers() // 3
+
+    Flight r = new Flight(111);
+    r.addOnePassenger();
+
+    r.getPassengers(); //1
+    Flight.getAllPassengers(); // 4
+```
+
+## function overloading <a name="function overloading"></a>
+
+When using function overloading it is important to remember that we need somehow tell the compiler what differs the first method from the second one.
+In this case the difference is that the first `add` method takes in 2 integers, meanwhile the second `add` method takes in a integer and a float.
+If we would take in the same parameters in this case would have a compile error.
+
+```java
+package com.company.masiu;
+
+public class Math {
+
+  public int add(int a, int b) {
+    return a + b;
+  }
+
+  public float add(int a, float b) {
+    return a + b;
+  }
+}
+
+
+int res = m.add(10, 12);
+float res2 = m.add(10,10.5f);
+
+
+```
+
+Function overloading works similar like optional parameters in JavaScript, that his how would like see it.

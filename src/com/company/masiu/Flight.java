@@ -1,58 +1,51 @@
 package com.company.masiu;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Flight {
 
-  int passengers, seats;
+  List<Passenger> passengers;
+  int seats;
+  int pricePerBag;
   private static int allPassengers;
   String destination;
 
-  public Flight(int seats) {
-    this.passengers = 0;
+  public Flight(int seats, int pricePerBag, String destination) {
+    this.passengers = new ArrayList<Passenger>();
     this.seats = seats;
-    this.destination = "";
-  }
-
-  public static int getAllPassengers() {
-    return allPassengers;
-  }
-
-  public static void resetAllPassengers() {
-    allPassengers = 0;
-  }
-
-  void addOnePassenger() {
-    if (passengers < seats) {
-      passengers += 1;
-      allPassengers += 1;
-    }
-  }
-
-  void updateSeats(int seats) {
-    this.seats = seats;
-  }
-
-  void setDestination(String destination) {
+    this.pricePerBag = pricePerBag;
     this.destination = destination;
   }
 
-  public int getPassengers() {
+  public void addPassenger(Passenger... list) {
+    if (seats > this.passengers.size()) {
+      for (Passenger p : list) {
+        this.passengers.add(p);
+      }
+    }
+  }
+
+  public int totalPriceWithBags() {
+    int total = 1;
+    for (Passenger p : this.passengers) {
+      total += (p.checkedBags * this.pricePerBag);
+    }
+    return total;
+  }
+
+  public List<Passenger> getPassengers() {
     return passengers;
   }
 
-  public int getSeats() {
-    return seats;
+  public void showAllPassengers() {
+    for (Passenger p : this.passengers) {
+      print(p);
+    }
   }
 
-  public String getDestination() {
-    return destination;
-  }
-
-  @Override
-  public String toString() {
-    return "Flight{" +
-           "passengers=" + passengers +
-           ", seats=" + seats +
-           ", destination='" + destination + '\'' +
-           '}';
+  private <T> void print(T value) {
+    System.out.println(value);
   }
 }

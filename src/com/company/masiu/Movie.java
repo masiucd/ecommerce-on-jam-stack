@@ -50,7 +50,7 @@ public class Movie {
       if (haveAfford) {
         print("you will see movie " + usersChoice + " and pay " + moviePrice + "$");
       } else {
-        print("sorry but you dont have enough money too se " + usersChoice + "you need " + difference + "left to see it");
+        print("sorry but you dont have enough money too se " + usersChoice + " you need " + difference + " left to see it");
       }
     } else {
       print("the movie " + usersChoice + " does not exist");

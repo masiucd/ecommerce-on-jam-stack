@@ -2,37 +2,17 @@ package com.company.masiu;
 
 import java.util.Arrays;
 
-
-
 public class Main {
 
   public static void main(String[] args) {
-//    performCalculation();
-//    Card c = new Card();
-//    print(c.getHand());
-//    String x = c.getRandomCard();
-//    print(x);
+    Flight f = new Flight(100, 10,"LA");
+    Passenger p1 = new Passenger("Bob", 22,3);
+    Passenger p2 = new Passenger("Greg", 32,2);
+    Passenger p3 = new Passenger("Linda", 67,1);
+    f.addPassenger(p1, p2, p3);
+    f.showAllPassengers();
 
-    Flight.resetAllPassengers();
-    Flight f = new Flight(21);
-    f.addOnePassenger();
-    f.addOnePassenger();
-    f.addOnePassenger();
-
-    Flight r = new Flight(111);
-    r.addOnePassenger();
-
-    print(r.toString());
-    print(Flight.getAllPassengers());
-
-//    Movie movie = new Movie();
-//    movie.addMovie("Batman", 100);
-//    movie.addMovie("Vikings",20);
-//    movie.addMovie("Harry-Potter",120);
-
-//    print(movie.canSeeTheMovie("Batman",150));
-//    movie.init();
-
+    print(f.totalPriceWithBags());
   }
 
   private static MathEquation createEqautions(double leftValue, double rightValue, char opCode) {
