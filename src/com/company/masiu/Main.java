@@ -5,14 +5,14 @@ import java.util.Arrays;
 public class Main {
 
   public static void main(String[] args) {
-    Flight f = new Flight(100, 10,"LA");
-    Passenger p1 = new Passenger("Bob", 22,3);
-    Passenger p2 = new Passenger("Greg", 32,2);
-    Passenger p3 = new Passenger("Linda", 67,1);
-    f.addPassenger(p1, p2, p3);
-    f.showAllPassengers();
+      Card cardGame = new Card();
 
-    print(f.totalPriceWithBags());
+
+      String firstCard = cardGame.getRandomCard();
+//      print(firstCard);
+
+    Object obj = new Card[10];
+    print(obj.toString() );
   }
 
   private static MathEquation createEqautions(double leftValue, double rightValue, char opCode) {

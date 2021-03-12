@@ -266,3 +266,22 @@ float res2 = m.add(10,10.5f);
 ```
 
 Function overloading works similar like optional parameters in JavaScript, that his how would like see it.
+
+## Object Classes <a name="Object-class"></a>
+
+Object class in `Java` is the main class in your application. When creating a new class by default your class is extending from the `Object class`.
+
+```java
+  class MyClass extends Object {
+
+  }
+```
+
+But we don't have to type extends Object since this is handled by default from the `JVM` compiler.
+This is enough.
+
+```java
+  class MyClass {
+
+  }
+```

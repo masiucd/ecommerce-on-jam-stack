@@ -1,5 +1,8 @@
 package com.company.masiu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Algo {
 
   public String reverseString(String s) {
@@ -88,5 +91,9 @@ public class Algo {
     }
 
     return xs;
+  }
+
+  private <T> void print(T v) {
+    System.out.println(v);
   }
 }
