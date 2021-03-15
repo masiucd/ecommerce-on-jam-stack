@@ -1,37 +1,46 @@
 package com.company.masiu;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Scanner;
+
+import com.company.masiu.movie.Movie;
+import com.company.masiu.movie.MovieApp;
+import com.company.masiu.movie.Person;
 
 public class Main {
 
   public static void main(String[] args) {
-      Card cardGame = new Card();
+    MovieApp m = new MovieApp();
+    Scanner scanner = new Scanner(System.in);
+    m.run();
 
+    print("Hello please enter your information");
+    print("What is your name");
+    String userName = scanner.nextLine();
 
-      String firstCard = cardGame.getRandomCard();
-//      print(firstCard);
+    print("how old are you");
+    String age = scanner.nextLine();
 
-    Object obj = new Card[10];
-    print(obj.toString() );
+    print("how much are you willing to pay to see the movie?");
+    String usersMoney = scanner.nextLine();
+
+    Person user = new Person(userName, Integer.parseInt(age), Integer.parseInt(usersMoney));
+    print(user);
+
+    print("select a movie");
+    String usersMovieChoice = scanner.nextLine();
+
+    Movie x = m.selectMovie(formatString(usersMovieChoice));
+    print(x);
+
+//    HashMap<String, Movie> movies = m.getMovies();
+//    m.printMovis();
+
   }
 
-  private static MathEquation createEqautions(double leftValue, double rightValue, char opCode) {
-    MathEquation equation = new MathEquation(leftValue, rightValue, opCode);
-    return equation;
-  }
-
-  static void performCalculation() {
-
-    MathEquation[] equations = new MathEquation[4];
-    equations[0] = createEqautions(100.0d, 50.0d, 'd');
-    equations[1] = createEqautions(25.0d, 21.0d, 'a');
-    equations[2] = createEqautions(123.0d, 12.0d, 's');
-    equations[3] = createEqautions(45.0d, 330.0d, 'm');
-
-    for (MathEquation equation : equations) {
-      equation.execute();
-      print("result= " + equation.result);
-    }
+  public static String formatString(String s) {
+    return s.toLowerCase().trim();
   }
 
   public static <T> void print(T a) {
