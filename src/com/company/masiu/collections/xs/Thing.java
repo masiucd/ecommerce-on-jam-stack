@@ -14,6 +14,8 @@ public class Thing {
     this.isCool = isCool;
   }
 
+
+
   public int getId() {
     return id;
   }
