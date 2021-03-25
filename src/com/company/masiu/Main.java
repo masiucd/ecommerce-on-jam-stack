@@ -1,22 +1,28 @@
 package com.company.masiu;
 
 import java.util.Arrays;
+import java.util.List;
 
 import com.company.masiu.collections.xs.MyList;
 import com.company.masiu.dto.ex.Student;
 import com.company.masiu.dto.ex.StudentDao;
 import com.company.masiu.dto.ex.StudentDaoImpl;
+import com.company.masiu.streams.Product;
+import com.company.masiu.streams.StreamProducts;
 
 public class Main {
 
   public static void main(String[] args) {
-    StudentDao studentDao = new StudentDaoImpl();
+//    StudentDao studentDao = new StudentDaoImpl();
+//
+//
+//    for (Student student: studentDao.getAllStudents()){
+//      print(student.toString());
+//    }
 
-
-    for (Student student: studentDao.getAllStudents()){
-      print(student.toString());
-    }
-
+    StreamProducts sp = new StreamProducts();
+//    sp.productsWithUppercase();
+    sp.collectNonCoolProducts();
   }
 
   public static <T> void print(T a) {
