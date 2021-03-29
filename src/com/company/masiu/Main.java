@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.company.masiu.collections.xs.MyList;
+import com.company.masiu.collections.xs.MyMap;
 import com.company.masiu.dto.ex.Student;
 import com.company.masiu.dto.ex.StudentDao;
 import com.company.masiu.dto.ex.StudentDaoImpl;
@@ -20,9 +21,12 @@ public class Main {
 //      print(student.toString());
 //    }
 
+    MyMap map = new MyMap();
     StreamProducts sp = new StreamProducts();
 //    sp.productsWithUppercase();
     sp.collectNonCoolProducts();
+    String[] xs = {"hello", "legia", "warszawa", "hello", "legia"};
+    map.frequencyCounter(xs);
   }
 
   public static <T> void print(T a) {

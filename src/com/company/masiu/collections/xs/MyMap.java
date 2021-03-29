@@ -31,6 +31,22 @@ public class MyMap {
 
   public void clearStore() {
     mapStore.clear();
+
+  }
+
+  public void frequencyCounter(String[] input) {
+    Map<String, Integer> store = new HashMap<>();
+
+    for (String key : input) {
+      if (store.containsKey(key)) {
+//        store.put(key, store.get(key) + 1);
+        store.computeIfPresent(key, (k, v) -> v + 1);
+      } else {
+        store.put(key, 1);
+      }
+    }
+
+    System.out.println(store);
   }
 
   public void printThings() {
