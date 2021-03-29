@@ -1,10 +1,15 @@
-package com.company.masiu;
+package com.company.masiu.algo;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Algo {
+
+
+
 
   public String reverseString(String s) {
     String revered = "";
@@ -114,5 +119,16 @@ public class Algo {
     System.out.println(v);
   }
 
-  
+  public int nonConstructibleChange(int[] coins) {
+    Arrays.sort(coins);
+    int currentChange = 0;
+
+    for (Integer coin : coins) {
+      if (coin > currentChange + 1) {
+        return currentChange + 1;
+      }
+      currentChange += coin;
+    }
+    return currentChange + 1;
+  }
 }
