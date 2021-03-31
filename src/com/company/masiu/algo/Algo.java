@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Algo {
-
-
-
 
   public String reverseString(String s) {
     String revered = "";
@@ -130,5 +128,13 @@ public class Algo {
       currentChange += coin;
     }
     return currentChange + 1;
+  }
+
+  public int[] sortedSquaredArray(int[] array) {
+    List<Integer> xs = Arrays.stream(array).boxed().collect(Collectors.toList());
+
+    List<Integer> transformed = xs.stream().map(x -> x * x).sorted().collect(Collectors.toList());
+    int[] foo = new int[transformed.size()];
+    return Arrays.stream(foo).toArray();
   }
 }
