@@ -1,4 +1,4 @@
-package com.company.masiu.designPatterns;
+package com.company.masiu.singelTonPattern;
 
 import java.util.Objects;
 

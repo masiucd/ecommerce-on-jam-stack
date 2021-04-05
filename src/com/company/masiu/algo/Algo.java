@@ -131,10 +131,12 @@ public class Algo {
   }
 
   public int[] sortedSquaredArray(int[] array) {
-    List<Integer> xs = Arrays.stream(array).boxed().collect(Collectors.toList());
-
-    List<Integer> transformed = xs.stream().map(x -> x * x).sorted().collect(Collectors.toList());
-    int[] foo = new int[transformed.size()];
-    return Arrays.stream(foo).toArray();
+    int[] sortedArray = new int[array.length];
+    for (int i = 0; i < array.length; i++) {
+      int value = array[i];
+      sortedArray[i] = value * value;
+    }
+    Arrays.sort(sortedArray);
+    return sortedArray;
   }
 }
