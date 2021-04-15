@@ -35,7 +35,7 @@ public class ServerDemo {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-      String res = "Onother page";
+      String res = "Another page";
       exchange.sendResponseHeaders(200, res.length());
       OutputStream os = exchange.getResponseBody();
       os.write(res.getBytes());

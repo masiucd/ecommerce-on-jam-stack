@@ -3,6 +3,7 @@ package com.company.masiu.algo;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -138,5 +139,33 @@ public class Algo {
     }
     Arrays.sort(sortedArray);
     return sortedArray;
+  }
+
+  public int firstDuplicateValue2(int[] array) {
+    int minIndex = array.length;
+
+    for (int i = 0; i < array.length; i++) {
+      int current = array[i];
+      for (int j = i + 1; j < array.length; j++) {
+        int toCompareWith = array[j];
+        if (current == toCompareWith) {
+            minIndex = Math.min(minIndex,j);
+        }
+      }
+    }
+
+    return minIndex == array.length ? -1 : array[minIndex];
+  }
+
+  public int firstDuplicateValue(int[] array) {
+    HashMap<Integer, Boolean> hasSeenNumber = new HashMap<Integer, Boolean>();
+
+    for (int n : array) {
+      if (hasSeenNumber.containsKey(n)) {
+        return n;
+      }
+      hasSeenNumber.put(n, true);
+    }
+    return -1;
   }
 }
