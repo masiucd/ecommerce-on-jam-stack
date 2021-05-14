@@ -8,8 +8,11 @@ public class FlightDemo {
   public static void main(String[] args) {
     List<AirPlane> airplanes = new ArrayList<>();
 
-    Person frank = new Person("Frank",32);
-    Person linda = new Person("Linda",35);
+    Person frank = new Person("Frank", 32);
+    Person linda = new Person("Linda", 35);
+
+    frank.setAmountOfBags(2);
+    linda.setAmountOfBags(5);
 
     AirPlane boeingToLax = new BoeingFlight("Boeing455");
     AirPlane smallPlane = new BoeingFlight(
@@ -31,7 +34,6 @@ public class FlightDemo {
     printAirplanes(airplanes);
 
     printPassengers(boeingToLax.getPassengers());
-
   }
 
   public static void printAirplanes(List<AirPlane> airPlanes) {
@@ -50,9 +52,8 @@ public class FlightDemo {
     a2.setAmountOfSeats(temp);
   }
 
-
-  public static void printPassengers(List<Passenger> passengers){
-    for (Passenger person: passengers ){
+  public static void printPassengers(List<Passenger> passengers) {
+    for (Passenger person : passengers) {
       System.out.println(person.getName() + " " + person.getAge());
     }
   }
