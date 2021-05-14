@@ -6,9 +6,11 @@ public class BoeingFlight extends AirPlane{
     super(amountOfSeats, name, baggageWeight, totalWeight);
   }
 
+  public BoeingFlight(int amountOfSeats, String name) {
+    super(amountOfSeats, name);
+  }
+
   public BoeingFlight(String name) {
     super(name);
   }
-
-
 }

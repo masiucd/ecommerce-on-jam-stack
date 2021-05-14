@@ -1,5 +1,8 @@
 package com.company.masiu.flights;
 
+import java.util.ArrayList;
+import java.util.List;
+
 abstract public class AirPlane {
 
   private int amountOfSeats;
@@ -7,6 +10,7 @@ abstract public class AirPlane {
   private final float flightWeight;
   private float baggageWeight;
   private boolean canFly;
+  private List<Passenger> passengers;
 
   public AirPlane(int amountOfSeats, String name, float baggageWeight, float totalWeight) {
     this.amountOfSeats = amountOfSeats;
@@ -14,14 +18,36 @@ abstract public class AirPlane {
     this.baggageWeight = baggageWeight;
     this.flightWeight = totalWeight;
     this.canFly = true;
+    this.passengers = new ArrayList<>();
+  }
+
+  //  Overloading
+  public AirPlane(int amountOfSeats, String name) {
+    this.amountOfSeats = amountOfSeats;
+    this.name = name;
+    this.baggageWeight = 2000f;
+    this.flightWeight = 200000;
+
+    this.passengers = new ArrayList<>();
   }
 
   //  overloading
   public AirPlane(String name) {
-    this.name = name;
     this.amountOfSeats = 500;
+    this.name = name;
     this.baggageWeight = 2000f;
     this.flightWeight = 200000;
+    this.passengers = new ArrayList<>();
+  }
+
+  public void addPassenger(Passenger passenger) {
+    if (passengers.size() < amountOfSeats) {
+      passengers.add(passenger);
+    }
+  }
+
+  public boolean hasAvailableSeats() {
+    return amountOfSeats > passengers.size();
   }
 
   public int getAmountOfSeats() {
@@ -54,6 +80,10 @@ abstract public class AirPlane {
 
   public void setAmountOfSeats(int amountOfSeats) {
     this.amountOfSeats = amountOfSeats;
+  }
+
+  public List<Passenger> getPassengers() {
+    return passengers;
   }
 
   @Override
