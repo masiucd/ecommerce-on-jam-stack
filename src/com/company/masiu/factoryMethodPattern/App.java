@@ -6,10 +6,7 @@ public class App {
     Website site = WebsiteFactory.getWebsite("blog");
     System.out.println(site.getPages());
 
-
     Website shop = WebsiteFactory.getWebsite("shop");
     System.out.println(shop.getPages());
   }
-
-
 }
