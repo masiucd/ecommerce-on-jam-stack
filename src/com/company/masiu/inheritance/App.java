@@ -18,10 +18,10 @@ public class App {
 
     bobby.poop();
     bobby.printInsideBelly();
-
   }
 
   public static <T> void print(T v) {
+
     System.out.println(v);
   }
 }
