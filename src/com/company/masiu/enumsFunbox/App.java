@@ -1,5 +1,7 @@
 package com.company.masiu.enumsFunbox;
 
+import java.util.Scanner;
+
 import com.company.masiu.Print;
 
 public class App {
@@ -13,14 +15,17 @@ public class App {
     isTypeTheSame(banana, date);
     isTypeTheSame(banana, grannySmith);
 
-    Fruit apple = new Fruit(FruitType.SOUR, "Granny smith",Rank.OK);
+    Fruit apple = new Fruit(FruitType.SOUR, "Granny smith", Rank.OK);
     Fruit yellowBanana = new Fruit(FruitType.SOUR, "yellow Banana", Rank.VERY_NICE);
-    Fruit sweetDate = new Fruit(FruitType.SOUR, "Date",Rank.VERY_NICE);
-
 
     apple.higherRank(yellowBanana);
-    yellowBanana.higherRank(sweetDate);
 
+    Print.print("name a fruit");
+    Scanner scanner = new Scanner(System.in);
+    String fruitName = scanner.nextLine();
+    if (fruitName.length() < 3) {
+      throw new RuntimeException("NOooooo");
+    }
   }
 
   public static void isTypeTheSame(FruitType fruitType1, FruitType fruitType2) {
@@ -46,6 +51,4 @@ public class App {
         Print.print("could nor recognize type of " + fruit);
     }
   }
-
-
 }
