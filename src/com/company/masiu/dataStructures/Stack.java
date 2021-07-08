@@ -6,7 +6,7 @@ import com.company.masiu.Print;
 
 public class Stack implements Stackable {
 
-  private ArrayList<Integer> box;
+  private final ArrayList<Integer> box;
 
   public Stack() {
     this.box = new ArrayList<>();
