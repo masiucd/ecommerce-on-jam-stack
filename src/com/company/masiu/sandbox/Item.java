@@ -3,8 +3,8 @@ package com.company.masiu.sandbox;
 public class Item {
 
   private int id;
-  private String name;
-  private int yearCreated;
+  private final String name;
+  private final int yearCreated;
 
   public Item(int id, String name, int yearCreated) {
     this.id = id;
