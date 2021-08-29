@@ -5,12 +5,16 @@ import com.company.masiu.Print;
 public class App {
 
   public static void main(String[] args) {
-    Queue<Integer> q = new Queue<>();
-    q.enqueue(2);
-    q.enqueue(33);
-    q.enqueue(45);
-    q.deque();
-    q.print();
+    Bst bst = new Bst();
 
+    bst.insert(100);
+    bst.insert(50);
+    bst.insert(150);
+    bst.insert(200);
+    bst.insert(30);
+
+//    bst.printPostOrder();
+//    bst.printInOrder();
+    bst.printPreorder();
   }
 }
