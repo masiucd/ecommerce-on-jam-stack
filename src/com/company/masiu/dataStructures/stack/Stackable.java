@@ -1,4 +1,4 @@
-package com.company.masiu.dataStructures;
+package com.company.masiu.dataStructures.stack;
 
 import java.util.ArrayList;
 

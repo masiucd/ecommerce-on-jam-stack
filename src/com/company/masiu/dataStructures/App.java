@@ -1,6 +1,6 @@
 package com.company.masiu.dataStructures;
 
-import com.company.masiu.Print;
+import com.company.masiu.dataStructures.tree.bst.Bst;
 
 public class App {
 

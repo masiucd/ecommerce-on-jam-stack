@@ -1,4 +1,4 @@
-package com.company.masiu.dataStructures;
+package com.company.masiu.dataStructures.tree.bst;
 
 public class BstNode {
 

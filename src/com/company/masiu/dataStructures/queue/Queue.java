@@ -1,4 +1,4 @@
-package com.company.masiu.dataStructures;
+package com.company.masiu.dataStructures.queue;
 
 import java.util.ArrayList;
 import java.util.List;

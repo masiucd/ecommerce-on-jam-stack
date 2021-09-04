@@ -1,6 +1,7 @@
-package com.company.masiu.dataStructures;
+package com.company.masiu.dataStructures.tree.bst;
 
 import com.company.masiu.Print;
+import com.company.masiu.dataStructures.tree.bst.BstNode;
 
 public class Bst {
 
