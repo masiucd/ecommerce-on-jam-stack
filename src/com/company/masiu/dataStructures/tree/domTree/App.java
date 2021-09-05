@@ -1,4 +1,4 @@
-package com.company.masiu.dataStructures.tree.bst.domTree;
+package com.company.masiu.dataStructures.tree.domTree;
 
 import com.company.masiu.Print;
 

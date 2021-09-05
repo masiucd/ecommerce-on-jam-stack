@@ -1,7 +1,10 @@
 package com.company.masiu.dataStructures.tree.bst;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import com.company.masiu.Print;
-import com.company.masiu.dataStructures.tree.bst.BstNode;
 
 public class Bst {
 
@@ -25,6 +28,41 @@ public class Bst {
 
   public void printPreorder() {
     printPreorder(root, 0);
+  }
+
+  public void dfsPreOrder() {
+    dfsPreOrder(root);
+  }
+
+  public ArrayList<Integer> bfs() {
+    BstNode current = root;
+    Queue<BstNode> queue = new LinkedList<>();
+    queue.add(current);
+    ArrayList<Integer> visited = new ArrayList<>();
+    while (!queue.isEmpty()) {
+      current = queue.remove();
+      visited.add(current.value);
+      if (current.left != null) queue.add(current.left);
+      if (current.right != null) queue.add(current.right);
+    }
+    return visited;
+  }
+
+  private ArrayList<Integer> dfsPreOrder(BstNode node) {
+    ArrayList<Integer> visited = new ArrayList<>();
+    this.traversePreOrder(node, visited);
+    Print.print(visited);
+    return visited;
+  }
+
+  private void traversePreOrder(BstNode node, ArrayList<Integer> visited) {
+    visited.add(node.value);
+    if (node.left != null) {
+      traversePreOrder(node.left, visited);
+    }
+    if (node.right != null) {
+      traversePreOrder(node.right, visited);
+    }
   }
 
   private BstNode inserRec(BstNode root, int value) {
