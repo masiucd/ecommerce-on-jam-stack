@@ -1,5 +1,4 @@
-import {initStyles} from "../headers"
-
+import {initStyles} from "../../headers"
 ;(() => {
   initStyles()
   const app = document.querySelector<HTMLDivElement>("#app")!

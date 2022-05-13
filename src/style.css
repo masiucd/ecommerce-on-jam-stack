@@ -105,3 +105,35 @@ a {
   color: var(--link-color);
   text-decoration: none;
 }
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 0.5em;
+}
+input {
+  border-radius: 4px;
+  border: 1px solid var(var(--blue-300));
+  padding: 0.2em 0.4em;
+  font-size: var(--base-font-size);
+  box-shadow: var(--shadow-md);
+}
+
+button {
+  border: 1px solid var(--blue-300);
+  border-radius: 4px;
+  font-size: var(--base-font-size);
+  background: var(--yellow-100);
+  cursor: pointer;
+  min-width: 6em;
+}
+
+.page-title {
+  font-size: var(--h1);
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}

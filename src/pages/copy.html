@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Copy</title>
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Roboto+Mono:ital,wght@0,400;1,300;1,400&display=swap"
-      rel="stylesheet"
-    /> -->
+    <script type="module" src="../code/copy/copy.ts"></script>
+    <script type="module" src="../headers.ts"></script>
   </head>
   <body>
-    <h1>Copy</h1>
-    <div id="app"></div>
-    <script type="module" src="../js/copy.ts"></script>
-    <script type="module" src="../headers.ts"></script>
+    <h1 class="page-title">Copy</h1>
+    <div class="copy-box">
+      <div class="form-group">
+        <label for="copy-input"><span>Text</span></label>
+        <input type="text" id="copy-input" name="text" placeholder="Enter some text..." />
+      </div>
+      <button id="copy-button">Copy text</button>
+    </div>
   </body>
 </html>
