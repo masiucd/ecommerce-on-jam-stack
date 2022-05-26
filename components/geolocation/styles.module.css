@@ -1,0 +1,13 @@
+.wrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+  border: 2px solid #333;
+  border-radius: 4px;
+  padding: 2rem;
+}
+
+.wrapper iframe {
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
