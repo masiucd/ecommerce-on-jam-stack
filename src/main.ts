@@ -1,4 +1,4 @@
-import "./home.css"
+import "./home.scss"
 import {initStyles} from "./headers"
 ;(() => {
   initStyles()
@@ -15,7 +15,9 @@ import {initStyles} from "./headers"
   app.innerHTML = `
 <div class="box">
   <ul>    
-    ${navItems.map(item => `<li> <a href=${item.path}>${item.name}</a>   </li>`).join("")}
+    ${navItems
+      .map(item => `<li> <a href=${item.path}>${item.name}</a>   </li>`)
+      .join("")}
   </ul>
 </div>
 `
