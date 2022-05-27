@@ -10,12 +10,7 @@
     "prettier"
     // "next/core-web-vitals"
   ],
-  "plugins": [
-    "@typescript-eslint",
-    "react-hooks",
-    "simple-import-sort",
-    "cypress"
-  ],
+  "plugins": ["@typescript-eslint", "react-hooks", "simple-import-sort"],
 
   "parser": "@typescript-eslint/parser",
   "globals": {
@@ -54,12 +49,6 @@
       {
         "allow": ["warn", "error"]
       }
-    ],
-    "cypress/no-assigning-return-values": "error",
-    "cypress/no-unnecessary-waiting": "error",
-    "cypress/assertion-before-screenshot": "warn",
-    "cypress/no-force": "warn",
-    "cypress/no-async-tests": "error",
-    "cypress/no-pause": "error"
+    ]
   }
 }
