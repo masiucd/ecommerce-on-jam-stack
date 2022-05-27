@@ -1,5 +1,4 @@
 import type {GetStaticProps} from "next"
-import Head from "next/head"
 import Link from "next/link"
 import {ReactElement} from "react"
 
@@ -11,16 +10,14 @@ type HomePageProps = {
 }
 const HomePage = ({data}: HomePageProps): JSX.Element => {
   return (
-    <div>
-      <Head>
-        <title>Browser API`&apos;`S</title>
-        <meta name="description" content="Different browser APi's" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <ul className="p-2">
+    <div className="h-[40vh] flex items-center justify-center px-4 rounded-md shadow-md">
+      <ul className="p-2 flex flex-col items-center justify-center h-[90%] w-full">
         {data !== null &&
           data.map(({name}) => (
-            <li key={name}>
+            <li
+              key={name}
+              className="text-2xl relative capitalize mb-2 p-2 hover:text-fuchsia-400 after:content-[''] after:absolute after:bottom-0 after:left-0 after:bg-fuchsia-400 after:w-0 after:h-1 after:hover:w-full after:transition-all after:duration-400"
+            >
               <Link href={`/apps/${name}`}>
                 <a>{name}</a>
               </Link>

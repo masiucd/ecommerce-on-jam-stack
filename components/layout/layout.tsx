@@ -6,14 +6,16 @@ type Props = {
 }
 export default function Layout({
   children,
-  title = "Web Apis",
+  title = "Browser Web Api's",
 }: Props): JSX.Element {
   return (
     <>
       <Head>
         <title>{title}</title>
+        <meta name="description" content="Different browser APi's" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="h-[10vh] border">
+      <header className="h-[7vh] mb-2 shadow-md flex items-center">
         <h3>Web Api</h3>
       </header>
       {children}
