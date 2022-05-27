@@ -1,14 +1,15 @@
-import type {GetStaticProps, NextPage} from "next"
+import type {GetStaticProps} from "next"
 import Head from "next/head"
 import Link from "next/link"
+import {ReactElement} from "react"
 
-type WebApi = {
-  name: string
-}
+import Layout, {InnerLayout} from "~components/layout/layout"
+import Sidebar from "~components/layout/sidebar"
+
 type HomePageProps = {
   data: Array<WebApi> | null
 }
-const Home: NextPage<HomePageProps> = ({data}) => {
+const HomePage = ({data}: HomePageProps): JSX.Element => {
   return (
     <div>
       <Head>
@@ -16,14 +17,16 @@ const Home: NextPage<HomePageProps> = ({data}) => {
         <meta name="description" content="Different browser APi's" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {data !== null &&
-        data.map(({name}) => (
-          <li key={name}>
-            <Link href={`/app/${name}`}>
-              <a>{name}</a>
-            </Link>
-          </li>
-        ))}
+      <ul className="p-2">
+        {data !== null &&
+          data.map(({name}) => (
+            <li key={name}>
+              <Link href={`/apps/${name}`}>
+                <a>{name}</a>
+              </Link>
+            </li>
+          ))}
+      </ul>
     </div>
   )
 }
@@ -42,4 +45,15 @@ export const getStaticProps: GetStaticProps = async () => {
   return {props: {data}}
 }
 
-export default Home
+HomePage.getLayout = function getLayout(page: ReactElement): JSX.Element {
+  return (
+    <Layout>
+      <InnerLayout>
+        <Sidebar styles="col-span-1 h-full" />
+        <main className="col-span-4">{page}</main>
+      </InnerLayout>
+    </Layout>
+  )
+}
+
+export default HomePage

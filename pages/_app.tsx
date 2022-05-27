@@ -1,9 +1,11 @@
 import "../styles/globals.css"
 
-import type {AppProps} from "next/app"
+import {Fragment, ReactElement} from "react"
 
-function MyApp({Component, pageProps}: AppProps): JSX.Element {
-  return <Component {...pageProps} />
+function MyApp({Component, pageProps}: AppPropsWithLayout): JSX.Element {
+  const getLayout =
+    Component.getLayout ?? ((page: ReactElement): ReactElement => page)
+  return <Fragment>{getLayout(<Component {...pageProps} />)}</Fragment>
 }
 
 export default MyApp

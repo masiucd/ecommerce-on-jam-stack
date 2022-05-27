@@ -1,9 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type {NextApiRequest, NextApiResponse} from "next"
 
-type WebApi = {
-  name: string
-}
 type Data = Array<WebApi>
 
 const webApis = [{name: "copy"}, {name: "geoloaction"}, {name: "battery"}]
