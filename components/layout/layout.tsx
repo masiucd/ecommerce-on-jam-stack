@@ -28,7 +28,7 @@ type InnerLayoutProps = {
   children: React.ReactNode
 }
 export const InnerLayout = ({children}: InnerLayoutProps): JSX.Element => (
-  <div className="grid grid-col-1 md:grid-cols-5 gap-2 justify-center items-center mx-auto px-1 border border-red-500 min-h-[calc(100vh-20vh)]">
+  <div className="grid grid-cols-5 gap-2 justify-center items-center mx-auto px-1 border border-red-500 min-h-[calc(100vh-20vh)]">
     {children}
   </div>
 )

@@ -1,29 +1,24 @@
 import type {GetStaticProps} from "next"
-import Link from "next/link"
-import {ReactElement} from "react"
+import dynamic from "next/dynamic"
+import {ReactElement, useState} from "react"
 
 import Layout, {InnerLayout} from "~components/layout/layout"
 import Sidebar from "~components/layout/sidebar"
+
+const AppDataList = dynamic(() => import("~components/lists/app-data"))
 
 type HomePageProps = {
   data: Array<WebApi> | null
 }
 const HomePage = ({data}: HomePageProps): JSX.Element => {
+  const [open, setOpen] = useState(false)
   return (
-    <div className="h-[40vh] flex items-center justify-center px-4 rounded-md shadow-md">
-      <ul className="p-2 flex flex-col items-center justify-center h-[90%] w-full">
-        {data !== null &&
-          data.map(({name}) => (
-            <li
-              key={name}
-              className="text-2xl relative capitalize mb-2 p-2 hover:text-fuchsia-400 after:content-[''] after:absolute after:bottom-0 after:left-0 after:bg-fuchsia-400 after:w-0 after:h-1 after:hover:w-full after:transition-all after:duration-400"
-            >
-              <Link href={`/apps/${name}`}>
-                <a>{name}</a>
-              </Link>
-            </li>
-          ))}
-      </ul>
+    <div className="h-[40vh] flex flex-col items-center justify-center px-4 rounded-md shadow-md">
+      <div className="mb-auto flex flex-col justify-center">
+        <h1 className="text-5xl mb-4">Welcome to web api &apos; s</h1>
+        <button onClick={(): void => setOpen(!open)}>View Apps</button>
+      </div>
+      {data && <AppDataList open={open} data={data} />}
     </div>
   )
 }
@@ -46,8 +41,10 @@ HomePage.getLayout = function getLayout(page: ReactElement): JSX.Element {
   return (
     <Layout>
       <InnerLayout>
-        <Sidebar styles="col-span-1 h-full" />
-        <main className="col-span-4">{page}</main>
+        <Sidebar styles="hidden md:flex md:col-span-1 h-full " />
+        <main className="col-span-full md:col-span-4">
+          <div className=" max-w[90%] max-w-[80%] mx-auto">{page}</div>
+        </main>
       </InnerLayout>
     </Layout>
   )
