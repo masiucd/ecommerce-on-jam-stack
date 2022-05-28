@@ -2,6 +2,7 @@ import dynamic from "next/dynamic"
 import {GetStaticPaths, GetStaticProps} from "next/types"
 import {ParsedUrlQuery} from "node:querystring"
 import React, {Fragment, ReactElement} from "react"
+import Battery from "~components/apps/battery/battery"
 
 import Layout from "~components/layout/layout"
 import {WebApi} from "~types/types"
@@ -27,7 +28,7 @@ const renderApp = (slug: string): JSX.Element => {
     case "geoloaction":
       return <Geolocation />
     case "battery":
-      return <h1>battery</h1>
+      return <Battery />
     case "file-system":
       return <FileSystem />
     default:
