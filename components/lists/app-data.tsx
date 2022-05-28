@@ -18,7 +18,7 @@ const AppDataList = ({data}: Props): JSX.Element => (
       data.map(({name}) => (
         <li
           key={name}
-          className="text-[1.2em] relative capitalize mb-2 p-2 hover:text-fuchsia-400 after:content-[''] after:absolute after:bottom-0 after:left-0 after:bg-fuchsia-400 after:w-0 after:h-1 after:hover:w-full after:transition-all after:duration-400"
+          className="text-[1.2em] relative capitalize mb-2 p-2 hover:text-blue-400 after:content-[''] after:absolute after:bottom-0 after:left-0 after:bg-blue-400 after:w-0 after:h-1 after:hover:w-full after:transition-all after:duration-400"
         >
           <Link href={`/apps/${name}`} as={`/apps/${name}`}>
             <a>{name}</a>

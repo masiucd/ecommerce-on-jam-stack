@@ -39,13 +39,7 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 HomePage.getLayout = function getLayout(page: ReactElement): JSX.Element {
-  return (
-    <Layout>
-      <main className="min-h-[80vh] max-w-[80%] mx-auto flex items-center justify-center">
-        {page}
-      </main>
-    </Layout>
-  )
+  return <Layout>{page}</Layout>
 }
 
 export default HomePage

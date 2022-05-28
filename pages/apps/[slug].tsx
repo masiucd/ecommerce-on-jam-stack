@@ -9,6 +9,9 @@ import {WebApi} from "~types/types"
 const FileSystem = dynamic(
   () => import("~components/apps/file-system/file-system")
 )
+const Geolocation = dynamic(
+  () => import("~components/apps/geolocation/geolocation")
+)
 
 interface AppsPathProps extends ParsedUrlQuery {
   slug: string
@@ -22,7 +25,7 @@ const renderApp = (slug: string): JSX.Element => {
     case "copy":
       return <h1>copy</h1>
     case "geoloaction":
-      return <h1>geoloaction</h1>
+      return <Geolocation />
     case "battery":
       return <h1>battery</h1>
     case "file-system":
@@ -63,13 +66,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 }
 
 AppPage.getLayout = function getLayout(page: ReactElement): JSX.Element {
-  return (
-    <Layout>
-      <main className="min-h-[80vh] max-w-[80%] mx-auto flex items-center justify-center">
-        {page}
-      </main>
-    </Layout>
-  )
+  return <Layout>{page}</Layout>
 }
 
 export default AppPage

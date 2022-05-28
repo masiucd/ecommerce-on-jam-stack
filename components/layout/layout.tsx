@@ -21,7 +21,9 @@ export default function Layout({
           <a className="text-2xl">Web Apis</a>
         </Link>
       </header>
-      {children}
+      <main className="min-h-[80vh] max-w-[80%] mx-auto flex items-center justify-center ">
+        {children}
+      </main>
       <footer className="h-[10vh] border"></footer>
     </>
   )
