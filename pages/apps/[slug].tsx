@@ -2,7 +2,6 @@ import dynamic from "next/dynamic"
 import {GetStaticPaths, GetStaticProps} from "next/types"
 import {ParsedUrlQuery} from "node:querystring"
 import React, {Fragment, ReactElement} from "react"
-import Battery from "~components/apps/battery/battery"
 
 import Layout from "~components/layout/layout"
 import {WebApi} from "~types/types"
@@ -27,10 +26,10 @@ const renderApp = (slug: string): JSX.Element => {
       return <h1>copy</h1>
     case "geoloaction":
       return <Geolocation />
-    case "battery":
-      return <Battery />
     case "file-system":
       return <FileSystem />
+    case "page-visibility":
+      return <h1>page-visibility</h1>
     default:
       throw new Error("Unknown app")
   }
