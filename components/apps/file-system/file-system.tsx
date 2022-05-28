@@ -1,6 +1,7 @@
-import React from "react"
+import React, {useState} from "react"
 
-const getFile = async (): Promise<void> => {
+let fileManager = null
+const getFile = async (): Promise<string | null> => {
   if (typeof window !== "undefined" && "showOpenFilePicker" in window) {
     const response = await window?.showOpenFilePicker({
       types: [
@@ -14,11 +15,23 @@ const getFile = async (): Promise<void> => {
       excludeAcceptAllOption: true,
       multiple: true,
     })
-    const [{kind, name}] = response
-    console.log({kind, name})
+    const [fileHandle] = response
+    fileManager = fileHandle
+    if (fileHandle.kind === "file") {
+      const file = await fileHandle.getFile()
+      const content = await file.text()
+      return content
+    }
   }
+  return null
 }
+
+const saveFile = async (): Promise<void> => {
+  // fileManager
+}
+
 const FileSystem = (): JSX.Element => {
+  const [svgContent, setSvgContent] = useState<string | null>(null)
   return (
     <div className="flex flex-col border border-red-500">
       <h2>
@@ -33,12 +46,15 @@ const FileSystem = (): JSX.Element => {
             id="open"
             className="border"
             onClick={async (): Promise<void> => {
-              await getFile()
+              const content = await getFile()
+              if (content !== null) {
+                setSvgContent(content)
+              }
             }}
           >
             Open Svg
           </button>
-          <button disabled className="border">
+          <button disabled={svgContent === null} className="border">
             Save Svg
           </button>
         </div>
@@ -46,7 +62,11 @@ const FileSystem = (): JSX.Element => {
           id="editor"
           rows={20}
           placeholder="Upload SVG"
-          disabled
+          disabled={svgContent === null}
+          value={svgContent ?? ""}
+          onChange={(e): void => {
+            setSvgContent(e.target.value)
+          }}
         ></textarea>
       </div>
       <div id="img-container"></div>
