@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Link from "next/link"
 
 type Props = {
   children: React.ReactNode
@@ -15,8 +16,10 @@ export default function Layout({
         <meta name="description" content="Different browser APi's" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="h-[7vh] mb-2 shadow-md flex items-center">
-        <h3>Web Api</h3>
+      <header className="h-[7vh] mb-2 shadow-md flex items-center px-12">
+        <Link href="/">
+          <a className="text-2xl">Web Apis</a>
+        </Link>
       </header>
       {children}
       <footer className="h-[10vh] border"></footer>

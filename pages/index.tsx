@@ -1,28 +1,25 @@
 import type {GetStaticProps} from "next"
 import dynamic from "next/dynamic"
-import {ReactElement, useState} from "react"
+import {ReactElement} from "react"
 
-import Layout, {InnerLayout} from "~components/layout/layout"
-import Sidebar from "~components/layout/sidebar"
+import Layout from "~components/layout/layout"
+import {WebApi} from "~types/types"
 
 const AppDataList = dynamic(() => import("~components/lists/app-data"))
 
 type HomePageProps = {
   data: Array<WebApi> | null
 }
+
 const HomePage = ({data}: HomePageProps): JSX.Element => {
-  const [open, setOpen] = useState(false)
   return (
-    <div className="min-h-[40vh] flex flex-col items-center justify-center px-4 rounded-md shadow-md">
-      <div className="mb-auto flex flex-col justify-center text-2xl">
+    <div className="min-h-[35vh] flex flex-col items-center justify-center px-4 rounded-md shadow-md ">
+      <div className="flex flex-col justify-center text-2xl mb-auto">
         <h1 className="text-[1.4em] md:text-[2em] mb-4">
           Welcome to web api &apos; s
         </h1>
-        <button onClick={(): void => setOpen(!open)}>
-          {open ? "Hide" : "View"} Apps
-        </button>
       </div>
-      {data && <AppDataList open={open} data={data} />}
+      {data && <AppDataList data={data} />}
     </div>
   )
 }
@@ -44,12 +41,9 @@ export const getStaticProps: GetStaticProps = async () => {
 HomePage.getLayout = function getLayout(page: ReactElement): JSX.Element {
   return (
     <Layout>
-      <InnerLayout>
-        <Sidebar />
-        <main className="col-span-full md:col-span-4">
-          <div className=" max-w[90%] max-w-[80%] mx-auto">{page}</div>
-        </main>
-      </InnerLayout>
+      <main className="min-h-[80vh] max-w-[80%] mx-auto flex items-center justify-center">
+        {page}
+      </main>
     </Layout>
   )
 }

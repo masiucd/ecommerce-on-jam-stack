@@ -1,10 +1,10 @@
 import dynamic from "next/dynamic"
 import {GetStaticPaths, GetStaticProps} from "next/types"
 import {ParsedUrlQuery} from "node:querystring"
-import React, {ReactElement} from "react"
+import React, {Fragment, ReactElement} from "react"
 
-import Layout, {InnerLayout} from "~components/layout/layout"
-import Sidebar from "~components/layout/sidebar"
+import Layout from "~components/layout/layout"
+import {WebApi} from "~types/types"
 
 const FileSystem = dynamic(
   () => import("~components/apps/file-system/file-system")
@@ -33,7 +33,7 @@ const renderApp = (slug: string): JSX.Element => {
 }
 
 const AppPage = ({slug}: Props): JSX.Element => {
-  return <div>{renderApp(slug)}</div>
+  return <Fragment>{renderApp(slug)}</Fragment>
 }
 
 export const getStaticPaths: GetStaticPaths<AppsPathProps> = async () => {
@@ -65,10 +65,9 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 AppPage.getLayout = function getLayout(page: ReactElement): JSX.Element {
   return (
     <Layout>
-      <InnerLayout>
-        <Sidebar styles="col-span-1 h-full" />
-        <main className="col-span-4">{page}</main>
-      </InnerLayout>
+      <main className="min-h-[80vh] max-w-[80%] mx-auto flex items-center justify-center">
+        {page}
+      </main>
     </Layout>
   )
 }
