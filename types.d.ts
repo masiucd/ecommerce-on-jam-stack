@@ -9,3 +9,11 @@ type AppPropsWithLayout = AppProps & {
 type WebApi = {
   name: string
 }
+
+export {}
+
+declare global {
+  interface Window {
+    showOpenFilePicker: any
+  }
+}

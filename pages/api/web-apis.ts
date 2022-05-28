@@ -3,7 +3,12 @@ import type {NextApiRequest, NextApiResponse} from "next"
 
 type Data = Array<WebApi>
 
-const webApis = [{name: "copy"}, {name: "geoloaction"}, {name: "battery"}]
+const webApis = [
+  {name: "copy"},
+  {name: "geoloaction"},
+  {name: "battery"},
+  {name: "file-system"},
+]
 
 export default async function handler(
   req: NextApiRequest,
