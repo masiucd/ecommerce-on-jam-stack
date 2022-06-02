@@ -15,7 +15,12 @@ const CartBox = () => (
   </div>
 )
 
-const LayoutTitle = () => <strong className="text-2xl">Masiu paintings</strong>
+interface LayoutTitleProps {
+  styles?: string
+}
+const LayoutTitle = ({styles = ""}: LayoutTitleProps) => (
+  <strong className={`text-xl ${styles}`}>Masiu&apos;s Sick images</strong>
+)
 
 const navItems = [
   {name: "items", path: "/items"},
@@ -39,7 +44,6 @@ const Header = () => {
             ))}
           </ul>
         </nav>
-
         <CartBox />
       </div>
     </header>
@@ -47,10 +51,12 @@ const Header = () => {
 }
 
 const Footer = () => {
+  const date = new Date()
   return (
-    <footer className="h-[10vh] bg-blue-600 text-white">
-      <div className="w-[90%] md:w-[80%] m-auto py-2">
-        <LayoutTitle />
+    <footer className="h-[10vh] bg-blue-600 text-white ">
+      <div className="w-[90%] md:w-[80%] m-auto py-2 flex flex-col items-center justify-center ">
+        <LayoutTitle styles="pb-1" />
+        <small>&copy; Masiu&apos;s Sick images {date.getFullYear()} </small>
       </div>
     </footer>
   )
