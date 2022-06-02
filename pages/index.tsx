@@ -1,10 +1,23 @@
 import Head from "next/head"
 import {Fragment, ReactElement} from "react"
 import Layout, {InnerLayout} from "~components/layout/layout"
+import Image from "next/image"
 
 const Card = ({name}: {name: string}) => (
-  <div className="min-w-[5em] min-h-[5em]">
-    <p>{name}</p>
+  <div className="min-w-[6rem] min-h-[6rem]">
+    <div>
+      <div className="rounded-md">
+        <Image
+          src={`/images/${name}.jpeg`}
+          alt="Picture of the author"
+          width={500}
+          height={500}
+          priority
+        />
+      </div>
+      <p>{name}</p>
+    </div>
+    <button>add {name} to cart</button>
   </div>
 )
 
@@ -15,10 +28,6 @@ const cards = [
   {name: "card-4"},
   {name: "card-5"},
   {name: "card-6"},
-  {name: "card-7"},
-  {name: "card-8"},
-  {name: "card-9"},
-  {name: "card-10"},
 ]
 
 const Home = (): JSX.Element => (
@@ -31,12 +40,10 @@ const Home = (): JSX.Element => (
     <div>
       <h1>Masiu&apos;s Sick images</h1>
     </div>
-    <p>Top 10 images of the week</p>
-    <div className="grid grid-cols-3 gap-2">
+    <p>Top 6 images of the week</p>
+    <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-2">
       {cards.map(({name}) => (
-        <div key={name} className={`gallery-item ${name}`}>
-          <Card name={name} />
-        </div>
+        <Card name={name} key={name} />
       ))}
     </div>
   </Fragment>
