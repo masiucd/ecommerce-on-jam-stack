@@ -21,7 +21,7 @@ const Card = ({card}: CardProps) => {
           />
         </div>
         <div className="overlay absolute top-0 left-0 bg-slate-800 w-full h-full opacity-40"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:text-xl text-white hidden group-hover:flex transition-all ease-in-out">
+        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:text-xl text-white opacity-0 group-hover:opacity-100 group-hover:top-1/2  transition-all ease-in-out">
           <div className="flex flex-col p-1 items-center justify-center">
             <p>{name}</p>
             <p>{price} $</p>
