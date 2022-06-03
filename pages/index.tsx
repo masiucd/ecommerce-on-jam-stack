@@ -1,9 +1,11 @@
 import Head from "next/head"
 import {Fragment, ReactElement} from "react"
-import Layout, {InnerLayout} from "~components/layout/layout"
+import {InnerLayout, Layout} from "~components/layout"
 import Image from "next/image"
 import cards from "~data/static-images.json"
 import Title from "~components/title"
+import type {GetStaticProps} from "next/types"
+import {getAllCardImages} from "~lib/graph-cms"
 
 const Card = ({name}: {name: string}) => (
   <div className="min-w-[6rem] min-h-[6rem] ">
@@ -26,19 +28,25 @@ const Card = ({name}: {name: string}) => (
   </div>
 )
 
-const Home = (): JSX.Element => (
-  <Fragment>
-    <Title>
-      <h1>Masiu&apos;s Sick images</h1>
-    </Title>
-    <p>Top 6 images of the week</p>
-    <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-2 p-2">
-      {cards.map(({name}) => (
-        <Card name={name} key={name} />
-      ))}
-    </div>
-  </Fragment>
-)
+interface Props {
+  cards: any
+}
+const Home = ({cards}: Props): JSX.Element => {
+  console.log("cards", cards)
+  return (
+    <Fragment>
+      <Title>
+        <h1>Masiu&apos;s Sick images</h1>
+      </Title>
+      <p>Top 6 images of the week</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-2 p-2">
+        {/* {cards.map(({name}) => (
+          <Card name={name} key={name} />
+        ))} */}
+      </div>
+    </Fragment>
+  )
+}
 
 Home.getLayout = function (page: ReactElement) {
   return (
@@ -53,6 +61,15 @@ Home.getLayout = function (page: ReactElement) {
       </Layout>
     </Fragment>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const cards = await getAllCardImages()
+  return {
+    props: {
+      cards,
+    },
+  }
 }
 
 export default Home

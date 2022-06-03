@@ -1,8 +1,38 @@
 [
-  {"name": "card-1"},
-  {"name": "card-2"},
-  {"name": "card-3"},
-  {"name": "card-4"},
-  {"name": "card-5"},
-  {"name": "card-6"}
+  {
+    "id": "cool-image",
+    "name": "Cool image",
+    "price": 452.1,
+    "image": "card-1.jpeg"
+  },
+  {
+    "id": "awesome-image",
+    "name": "Awesome image",
+    "price": 22.12,
+    "image": "card-2.jpeg"
+  },
+  {
+    "id": "beautiful-image",
+    "name": "Beautiful image ",
+    "price": 122.49,
+    "image": "card-3.jpeg"
+  },
+  {
+    "id": "sick-image",
+    "name": "Sick image",
+    "price": 121.29,
+    "image": "card-4.jpeg"
+  },
+  {
+    "id": "blazing-cool-image",
+    "name": "Blazing cool image",
+    "price": 43.39,
+    "image": "card-5.jpeg"
+  },
+  {
+    "id": "amazing-image",
+    "name": "Amazing  image",
+    "price": 33.39,
+    "image": "card-6.jpeg"
+  }
 ]

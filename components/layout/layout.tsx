@@ -77,5 +77,4 @@ const InnerLayout: FC<Props> = ({children}) => (
     {children}
   </main>
 )
-export {InnerLayout}
-export default Layout
+export {Layout, InnerLayout}
