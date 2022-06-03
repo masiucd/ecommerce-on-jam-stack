@@ -2,8 +2,13 @@ interface Options {
   variables?: Record<string, string | number | boolean>
   preview?: boolean
 }
-async function fetchAPI(query: string, {variables, preview}: Options = {}) {
+async function fetchAPI(
+  query: string,
+  {variables, preview}: Options = {}
+): Promise<Record<string, any>> {
   try {
+    // eslint-disable-next-line no-console
+    console.log(preview)
     const res = await fetch(process.env.GRAPHCMS_PROJECT_API ?? "", {
       method: "POST",
       headers: {
@@ -21,7 +26,7 @@ async function fetchAPI(query: string, {variables, preview}: Options = {}) {
     })
     const json = await res.json()
     if (json.errors) {
-      console.log(process.env.CMS_GCMS_PROJECT_NAME)
+      console.error(process.env.CMS_GCMS_PROJECT_NAME)
       console.error(json.errors)
       throw new Error("Failed to fetch API")
     }
@@ -35,10 +40,13 @@ async function fetchAPI(query: string, {variables, preview}: Options = {}) {
       message = String(error)
       console.error(message)
     }
+    return {message}
   }
 }
 
-const getAllCardImages = async (first = 6) => {
+const getAllCardImages = async (
+  first = 6
+): Promise<Record<string, Array<any>>> => {
   const data = await fetchAPI(
     `
   query CardImages($first: Int!) {

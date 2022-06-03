@@ -1,11 +1,11 @@
 import Head from "next/head"
-import {Fragment, ReactElement} from "react"
-import {InnerLayout, Layout} from "~components/layout"
-import Title from "~components/title"
 import type {GetStaticProps} from "next/types"
-import {getAllCardImages} from "~lib/graph-cms"
+import {Fragment, ReactElement} from "react"
 
 import {Card} from "~components/card"
+import {InnerLayout, Layout} from "~components/layout"
+import Title from "~components/title"
+import {getAllCardImages} from "~lib/graph-cms"
 
 interface Props {
   cards: Card[]
@@ -26,7 +26,7 @@ const Home = ({cards}: Props): JSX.Element => {
   )
 }
 
-Home.getLayout = function (page: ReactElement) {
+Home.getLayout = function (page: ReactElement): JSX.Element {
   return (
     <Fragment>
       <Head>
