@@ -1,14 +1,10 @@
 interface Options {
   variables?: Record<string, string | number | boolean>
-  preview?: boolean
 }
-async function fetchAPI(
-  query: string,
-  {variables, preview}: Options = {}
-): Promise<Record<string, any>> {
+async function fetchAPI(query: string, {variables}: Options = {}) {
   try {
     // eslint-disable-next-line no-console
-    console.log(preview)
+
     const res = await fetch(process.env.GRAPHCMS_PROJECT_API ?? "", {
       method: "POST",
       headers: {
@@ -40,13 +36,10 @@ async function fetchAPI(
       message = String(error)
       console.error(message)
     }
-    return {message}
   }
 }
 
-const getAllCardImages = async (
-  first = 6
-): Promise<Record<string, Array<any>>> => {
+const getAllCardImages = async (first = 6): Promise<HashMap<Array<Card>>> => {
   const data = await fetchAPI(
     `
   query CardImages($first: Int!) {
@@ -60,7 +53,7 @@ const getAllCardImages = async (
     }
   }  
   `,
-    {preview: true, variables: {first}}
+    {variables: {first}}
   )
   return data.cardImages
 }

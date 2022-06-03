@@ -1,0 +1,5 @@
+[
+  {"name": "cards", "path": "/cards"},
+  {"name": "checkout", "path": "/checkout"},
+  {"name": "contact", "path": "/contact"}
+]
