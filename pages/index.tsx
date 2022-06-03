@@ -2,6 +2,7 @@ import type {GetStaticProps} from "next/types"
 import {Fragment, ReactElement} from "react"
 
 import {Card} from "~components/card"
+import Button from "~components/elements/button"
 import {InnerLayout, Layout} from "~components/layout"
 import Title from "~components/title"
 import {getAllCardImages} from "~lib/graph-cms"
@@ -19,11 +20,19 @@ const Home = ({cards}: Props): JSX.Element => (
         Top 6 images of the week
       </p>
     </Title>
-    <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-2 p-2">
+    <section className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-2 p-2 mb-3">
       {cards.map(card => (
         <Card key={card.cardSlug} card={card} />
       ))}
-    </div>
+    </section>
+    <aside className="flex justify-evenly md:max-w-[20rem] m-auto">
+      <Button href="/cards">
+        <span>All cards</span>
+      </Button>
+      <Button href="/contact">
+        <span>Get in touch</span>
+      </Button>
+    </aside>
   </Fragment>
 )
 
