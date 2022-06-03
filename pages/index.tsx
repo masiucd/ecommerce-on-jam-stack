@@ -2,37 +2,50 @@ import Head from "next/head"
 import {Fragment, ReactElement} from "react"
 import {InnerLayout, Layout} from "~components/layout"
 import Image from "next/image"
-import cards from "~data/static-images.json"
+
 import Title from "~components/title"
 import type {GetStaticProps} from "next/types"
 import {getAllCardImages} from "~lib/graph-cms"
 
-const Card = ({name}: {name: string}) => (
-  <div className="min-w-[6rem] min-h-[6rem] ">
-    <div className="border-2 border-slate-500 rounded-md shadow-md relative group mix-blend-multiply bg-blue-400">
-      <div className="rounded-md relative">
-        <Image
-          src={`/images/${name}.jpeg`}
-          alt="Picture of the author"
-          width={500}
-          height={440}
-          priority
-        />
-      </div>
-      <div className="overlay absolute top-0 left-0 bg-slate-800 w-full h-full opacity-40"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:text-2xl text-white hidden group-hover:flex transition-all ease-in-out">
-        <p>{name}</p>
-        <button>add {name} to cart</button>
+type Card = {
+  name: string
+  image: string
+  cardSlug: string
+  price: number
+}
+
+type CardProps = {
+  card: Card
+}
+const Card = ({card}: CardProps) => {
+  const {name, image, cardSlug, price} = card
+  return (
+    <div className="min-w-[6rem] min-h-[6rem] ">
+      <div className="border-2 border-slate-500 rounded-md shadow-md relative group mix-blend-multiply bg-blue-400">
+        <div className="rounded-md relative">
+          <Image
+            src={`/images/${image}.jpeg`}
+            alt="Picture of the author"
+            width={500}
+            height={440}
+            priority
+          />
+        </div>
+        <div className="overlay absolute top-0 left-0 bg-slate-800 w-full h-full opacity-40"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:text-xl text-white hidden group-hover:flex group-hover:flex-column transition-all ease-in-out">
+          <p>{name}</p>
+          <p>{price}$</p>
+          <button>add {name} to cart</button>
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
 
 interface Props {
-  cards: any
+  cards: Card[]
 }
 const Home = ({cards}: Props): JSX.Element => {
-  console.log("cards", cards)
   return (
     <Fragment>
       <Title>
@@ -40,9 +53,9 @@ const Home = ({cards}: Props): JSX.Element => {
       </Title>
       <p>Top 6 images of the week</p>
       <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-2 p-2">
-        {/* {cards.map(({name}) => (
-          <Card name={name} key={name} />
-        ))} */}
+        {cards.map(card => (
+          <Card key={card.cardSlug} card={card} />
+        ))}
       </div>
     </Fragment>
   )
