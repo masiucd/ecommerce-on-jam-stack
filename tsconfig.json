@@ -20,7 +20,7 @@
       "~hooks/*": ["hooks/*"],
       "~data/*": ["data/*"],
       "~lib/*": ["lib/*"],
-      "~jotai/*": ["jotai/*"]
+      "~state/*": ["state/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

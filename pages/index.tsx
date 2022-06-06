@@ -1,3 +1,4 @@
+import {useAtom} from "jotai"
 import type {GetStaticProps} from "next/types"
 import {Fragment, ReactElement} from "react"
 
@@ -7,14 +8,22 @@ import {Grid} from "~components/elements/grid"
 import {InnerLayout, Layout} from "~components/layout"
 import Title from "~components/title"
 import {getAllCardImages} from "~lib/graph-cms"
-
-import {CartProvider} from "../context/cart"
+import {cartAtom} from "~state/cart"
 
 interface Props {
   cards: Card[]
 }
 
+function addToCart(items: Card[], newItem: Card) {
+  const item = items.find(item => item.id === newItem.id)
+  return item
+    ? items.map(i => ({...i, quantity: i.quantity + 1}))
+    : [...items, {...newItem, quantity: 1}]
+}
+
 const Home = ({cards}: Props): JSX.Element => {
+  const [_, updateValue] = useAtom(cartAtom)
+
   return (
     <Fragment>
       <Title className="md:text-lg px-2 max-w-5xl m-auto">
@@ -25,13 +34,22 @@ const Home = ({cards}: Props): JSX.Element => {
           Top 6 images of the week
         </p>
       </Title>
-      <CartProvider>
-        <Grid className="max-w-5xl m-auto">
-          {cards.map(card => (
-            <Card key={card.id} card={card} />
-          ))}
-        </Grid>
-      </CartProvider>
+      <Grid className="max-w-5xl m-auto">
+        {cards.map(card => (
+          <Card
+            key={card.id}
+            card={card}
+            addToCart={() => {
+              updateValue(value => ({
+                ...value,
+
+                items: addToCart(value.items, card),
+                total: value.total + card.price,
+              }))
+            }}
+          />
+        ))}
+      </Grid>
       <aside className="flex justify-evenly md:max-w-[20rem] m-auto">
         <Button href="/cards">
           <span>All cards</span>

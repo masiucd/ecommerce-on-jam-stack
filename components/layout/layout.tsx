@@ -1,21 +1,20 @@
+import {useAtom} from "jotai"
 import Head from "next/head"
 import Link from "next/link"
 import React, {FC, Fragment} from "react"
 
 import Cart from "~components/icons/cart"
 import navItems from "~data/nav-items.json"
-
-import {CartProvider, useCartState} from "../../context/cart"
+import {cartAtom} from "~state/cart"
 
 const CartBox = () => {
-  const state = useCartState()
-  console.log("Asdasd", state)
+  const [value] = useAtom(cartAtom)
   return (
-    <div className="cart flex items-center gap-2">
+    <div className="cart flex items-center gap-2 min-w-[7rem] justify-center">
       <span role="image">
         <Cart />
       </span>
-      <span>${state.total}</span>
+      <span>${value.total.toFixed(2)}</span>
     </div>
   )
 }
@@ -35,25 +34,23 @@ const LayoutTitle = ({styles = ""}: LayoutTitleProps) => (
 
 const Header = () => {
   return (
-    <CartProvider>
-      <header className="h-[10vh] mb-2 bg-blue-100 flex items-center text-slate-800 shadow-md">
-        <div className="w-[90%] md:w-[80%] m-auto  flex justify-between">
-          <LayoutTitle />
-          <nav className="flex flex-1">
-            <ul className="px-2  hidden sm:flex sm:w-[60%] md:w-[50%] justify-evenly m-auto">
-              {navItems.map(({name, path}) => (
-                <li key={name} className="hover:text-blue-600 capitalize">
-                  <Link href={path}>
-                    <a>{name}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <CartBox />
-        </div>
-      </header>
-    </CartProvider>
+    <header className="h-[10vh] mb-2 bg-blue-100 flex items-center text-slate-800 shadow-md">
+      <div className="w-[90%] md:w-[80%] m-auto  flex justify-between">
+        <LayoutTitle />
+        <nav className="flex flex-1">
+          <ul className="px-2  hidden sm:flex sm:w-[60%] md:w-[50%] justify-evenly m-auto">
+            {navItems.map(({name, path}) => (
+              <li key={name} className="hover:text-blue-600 capitalize">
+                <Link href={path}>
+                  <a>{name}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <CartBox />
+      </div>
+    </header>
   )
 }
 
