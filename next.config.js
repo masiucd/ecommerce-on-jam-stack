@@ -4,4 +4,5 @@ const nextConfig = {
   target: "serverless",
 }
 
+// eslint-disable-next-line no-undef
 module.exports = nextConfig
