@@ -22,18 +22,16 @@ interface CardImageProps {
   image: string
 }
 const CardImage = ({image}: CardImageProps) => (
-  <div className="relative">
+  <div className="relative after:content-[''] after:w-full after:h-full after:bg-slate-800 after:absolute after:left-0 after:top-0 after:opacity-30">
     <Image
       src={`/images/${image}.jpeg`}
       alt={`Picture of for image ${image}`}
       layout="responsive"
-      width={1}
-      height={1}
+      width={500}
+      height={500}
       quality={100}
-      placeholder="blur"
-      blurDataURL={`/images/${image}.jpeg`}
+      placeholder="empty"
     />
-    <div className="overlay absolute top-0 left-0 bg-slate-800 w-full h-full opacity-40"></div>
   </div>
 )
 
@@ -54,11 +52,11 @@ const ActionText = ({card, addToCart}: CardProps) => {
           onClick={() => {
             addToCart()
           }}
-          className="flex border-4 rounded-md border-slate-600 hover:border-blue-400 px-2 items-center"
+          className="flex gap-1 min-h-[2rem] border-2 rounded-md border-slate-600 hover:border-blue-400 px-2 items-center justify-center"
         >
-          Add to
-          <span role="image" className="ml-1">
-            <Cart />
+          <span className="text-[1rem]">Add to</span>
+          <span role="image">
+            <Cart width={17} height={17} />
           </span>
         </button>
       </div>

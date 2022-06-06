@@ -5,10 +5,10 @@ import React, {FC, Fragment} from "react"
 
 import Cart from "~components/icons/cart"
 import navItems from "~data/nav-items.json"
-import {cartAtom} from "~state/cart"
+import {readOnlyCartAtom} from "~state/cart"
 
 const CartBox = () => {
-  const [value] = useAtom(cartAtom)
+  const [value] = useAtom(readOnlyCartAtom)
   return (
     <div className="cart flex items-center gap-2 min-w-[7rem] justify-center">
       <span role="image">
@@ -34,7 +34,7 @@ const LayoutTitle = ({styles = ""}: LayoutTitleProps) => (
 
 const Header = () => {
   return (
-    <header className="h-[10vh] mb-2 bg-blue-100 flex items-center text-slate-800 shadow-md">
+    <header className="h-[10vh] mb-3 bg-blue-100 flex items-center text-slate-800 shadow-md">
       <div className="w-[90%] md:w-[80%] m-auto  flex justify-between">
         <LayoutTitle />
         <nav className="flex flex-1">

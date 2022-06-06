@@ -9,4 +9,7 @@ const cartAtom = atom<CartAtom>({
   total: 0,
 })
 
-export {cartAtom}
+const readOnlyCartAtom = atom(get => get(cartAtom))
+
+export {cartAtom, readOnlyCartAtom}
+export type {CartAtom}
