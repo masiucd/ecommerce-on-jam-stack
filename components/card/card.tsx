@@ -2,6 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 
 import Cart from "~components/icons/cart"
+
+import {useCartDispatch, useCartState} from "../../context/cart"
+
 type CardProps = {
   card: Card
 }
@@ -24,10 +27,9 @@ const CardImage = ({image}: CardImageProps) => (
     <Image
       src={`/images/${image}.jpeg`}
       alt={`Picture of for image ${image}`}
-      width={500}
-      height={450}
-      priority
       layout="responsive"
+      width={1}
+      height={1}
       quality={100}
       placeholder="blur"
       blurDataURL={`/images/${image}.jpeg`}
@@ -38,6 +40,10 @@ const CardImage = ({image}: CardImageProps) => (
 
 const ActionText = ({card}: CardProps) => {
   const {name, price, cardSlug} = card
+  const dispatch = useCartDispatch()
+  const state = useCartState()
+  console.log("in card ", state)
+
   return (
     <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:text-xl text-white opacity-0 group-hover:opacity-100 group-hover:top-1/2  transition-all ease-in-out">
       <div className="flex flex-col p-1 items-center justify-center">
@@ -48,7 +54,12 @@ const ActionText = ({card}: CardProps) => {
             <a>More</a>
           </Link>
         </p>
-        <button className="flex border-4 rounded-md border-slate-600 hover:border-blue-400 px-2 items-center">
+        <button
+          onClick={() => {
+            dispatch({type: "ADD_TO_CART", card})
+          }}
+          className="flex border-4 rounded-md border-slate-600 hover:border-blue-400 px-2 items-center"
+        >
           Add to
           <span role="image" className="ml-1">
             <Cart />

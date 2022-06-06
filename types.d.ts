@@ -1,8 +1,10 @@
 type Card = {
+  id: string
   name: string
   image: string
   cardSlug: string
   price: number
+  quantity: number
 }
 
 type HashMap<T> = {

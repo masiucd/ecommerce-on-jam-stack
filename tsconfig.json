@@ -19,7 +19,8 @@
       "~components/*": ["components/*"],
       "~hooks/*": ["hooks/*"],
       "~data/*": ["data/*"],
-      "~lib/*": ["lib/*"]
+      "~lib/*": ["lib/*"],
+      "~jotai/*": ["jotai/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

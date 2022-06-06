@@ -44,6 +44,7 @@ const getAllCardImages = async (first = 6): Promise<HashMap<Array<Card>>> => {
     `
   query CardImages($first: Int!) {
     cardImages(first: $first) {
+      id
       name
       description {
         text
