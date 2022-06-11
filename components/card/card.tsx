@@ -1,3 +1,4 @@
+import {motion} from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -9,12 +10,16 @@ type CardProps = {
 }
 const Card = ({card, addToCart}: CardProps) => {
   return (
-    <div role="grid-cell" className="shadow-md">
+    <motion.div
+      role="grid-cell"
+      className="shadow-md"
+      whileHover={{scale: 1.05, transition: {duration: 0.45}}}
+    >
       <div className="border-2 border-slate-500 rounded-md shadow-md relative group transition-all">
         <CardImage image={card.image} />
         <ActionText card={card} addToCart={addToCart} />
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -37,17 +42,21 @@ const CardImage = ({image}: CardImageProps) => (
 
 const ActionText = ({card, addToCart}: CardProps) => {
   const {name, price, cardSlug} = card
-
   return (
     <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:text-xl text-white opacity-0 group-hover:opacity-100 group-hover:top-1/2  transition-all ease-in-out">
-      <div className="flex flex-col p-1 items-center justify-center">
-        <p>{name}</p>
+      <div className="flex flex-col p-1 items-center justify-center w-full">
+        <Link href={`/cards/${cardSlug}`}>
+          <motion.a
+            className="hover:text-blue-200 mb-1 cursor-pointer"
+            whileHover={{
+              scale: 1.1,
+            }}
+          >
+            {name}
+          </motion.a>
+        </Link>
         <p>{price} $</p>
-        <p className="hover:text-blue-200 mb-3">
-          <Link href={`/cards/${cardSlug}`}>
-            <a>More</a>
-          </Link>
-        </p>
+
         <button
           onClick={() => {
             addToCart()
