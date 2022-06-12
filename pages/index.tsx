@@ -25,7 +25,7 @@ const Home = ({cards}: Props): JSX.Element => {
 
   return (
     <Fragment>
-      <Title className="md:text-lg px-2 max-w-4xl m-auto mb-5">
+      <Title className="md:text-lg px-2 max-w-4xl mb-5">
         <h1 className="text-34xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 drop-shadow-lg ">
           Masiu&apos;s Sick images
         </h1>

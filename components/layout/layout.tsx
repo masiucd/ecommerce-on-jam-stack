@@ -6,17 +6,21 @@ import React, {FC, Fragment} from "react"
 import Cart from "~components/icons/cart"
 import navItems from "~data/nav-items.json"
 import useHasMounted from "~hooks/mounted"
+import useToggle from "~hooks/toggle"
 import {cartItemsStorageAtom, readOnlyCartAtom} from "~state/cart"
 
 const CartBox = () => {
   const mounted = useHasMounted()
   const [value] = useAtom(readOnlyCartAtom)
   const [storedCartItems] = useAtom(cartItemsStorageAtom)
+  const [on, handlers] = useToggle()
   return (
     <div className="cart flex items-center gap-2 min-w-[7rem] justify-center">
-      <span role="image">
-        <Cart />
-      </span>
+      <button type="button" onClick={handlers.toggle}>
+        <span role="image">
+          <Cart on={on} />
+        </span>
+      </button>
       <span>
         $
         {mounted && storedCartItems !== null
@@ -92,8 +96,14 @@ const Layout: FC<Props> = ({children, title = "Sick imags"}) => (
   </Fragment>
 )
 
-const InnerLayout: FC<Props> = ({children}) => (
-  <main className="min-h-[calc(100vh-20vh)] m-auto max-w-[90%] md:max-w-[80%] mb-2 ">
+interface InnerLayoutProps {
+  className?: string
+  children: React.ReactNode
+}
+const InnerLayout: FC<InnerLayoutProps> = ({children, className = ""}) => (
+  <main
+    className={`min-h-[calc(100vh-20vh)] m-auto max-w-[90%] md:max-w-[65%] mb-2 ${className}`}
+  >
     {children}
   </main>
 )
