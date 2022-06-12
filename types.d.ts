@@ -5,6 +5,9 @@ type Card = {
   cardSlug: string
   price: number
   quantity: number
+  description: {
+    text: string
+  }
 }
 
 type HashMap<T> = {

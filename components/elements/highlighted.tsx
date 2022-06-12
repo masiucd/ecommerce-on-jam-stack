@@ -5,7 +5,7 @@ interface Props {
 }
 
 const Highlighted = ({children}: Props) => (
-  <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 inline-block">
+  <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-violet-500 inline-block">
     {children}
   </span>
 )

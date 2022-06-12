@@ -37,7 +37,7 @@ interface LayoutTitleProps {
 const LayoutTitle = ({styles = ""}: LayoutTitleProps) => (
   <Link href="/">
     <a
-      className={`text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-600 to-blue-500 block hover:scale-105 transition-all ease-out ${styles}`}
+      className={`text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-teal-500 block hover:scale-105 transition-all ease-out ${styles}`}
     >
       Masiu&apos;s Sick images
     </a>
@@ -46,7 +46,7 @@ const LayoutTitle = ({styles = ""}: LayoutTitleProps) => (
 
 const Header = () => {
   return (
-    <header className="h-[10vh] mb-3 bg-blue-100 flex items-center text-slate-800 shadow-md">
+    <header className="h-[10vh] mb-3 bg-slate-800 flex items-center text-slate-100 shadow-md">
       <div className="w-[90%] md:w-[80%] m-auto  flex justify-between">
         <LayoutTitle />
         <nav className="flex flex-1">
@@ -69,7 +69,7 @@ const Header = () => {
 const Footer = () => {
   const date = new Date()
   return (
-    <footer className="h-[10vh] shadow-md bg-blue-100 flex items-center text-slate-800">
+    <footer className="h-[10vh] shadow-md bg-slate-800 flex items-center text-slate-100">
       <div className="w-[90%] md:w-[80%] m-auto py-2 flex flex-col items-center justify-center ">
         <LayoutTitle styles="pb-1" />
         <small>&copy; Masiu&apos;s Sick images {date.getFullYear()} </small>

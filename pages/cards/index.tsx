@@ -37,7 +37,7 @@ const CardsPage = ({cards}: Props) => {
   return (
     <div>
       <Title className="md:text-lg px-2 max-w-4xl m-auto mb-5">
-        <h1 className="text-3xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 drop-shadow-lg ">
+        <h1 className="text-3xl bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-violet-500 drop-shadow-lg ">
           Masiu&apos;s Sick images
         </h1>
         <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-violet-500 drop-shadow-lg	">

@@ -11,7 +11,7 @@ const Button: FC<Props> = ({children, href = null}) => {
     return (
       <Link href={href}>
         <a
-          className={`border-2 border-blue-400 p-1 rounded-md shadow-sm hover:bg-blue-400 hover:border-slate-600 block`}
+          className={`border-2 border-teal-400 p-1 rounded-md shadow-sm hover:bg-teal-400 hover:border-slate-600 block`}
         >
           {children}
         </a>
@@ -20,7 +20,7 @@ const Button: FC<Props> = ({children, href = null}) => {
   }
   return (
     <button
-      className={`border-2 border-blue-400 p-1 rounded-md shadow-sm hover:bg-blue-400 hover:border-slate-600`}
+      className={`border-2 border-teal-400 p-1 rounded-md shadow-sm hover:bg-teal-400 hover:border-slate-600`}
     >
       {children}
     </button>

@@ -34,6 +34,9 @@ const CARD_BY_SLUG_QUERY = gql`
       image
       cardSlug
       price
+      description {
+        text
+      }
     }
   }
 `
