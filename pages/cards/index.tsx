@@ -3,7 +3,6 @@ import type {GetStaticProps} from "next/types"
 import React, {ReactElement} from "react"
 
 import {Card} from "~components/card"
-// import useSWR from "swr"
 import {Grid} from "~components/elements/grid"
 import {InnerLayout, Layout} from "~components/layout"
 import Title from "~components/title"
@@ -53,7 +52,7 @@ const CardsPage = ({cards}: Props) => {
             card={card}
             addToCart={() => {
               // updateValue(value => addToCartAction(card, value))
-              console.log("Click")
+              // console.log("Click")
             }}
           />
         ))}

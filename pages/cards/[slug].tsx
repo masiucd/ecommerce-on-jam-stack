@@ -1,25 +1,24 @@
 import type {GetStaticPaths, GetStaticProps} from "next/types"
 import {ParsedUrlQuery} from "node:querystring"
-import React from "react"
-import {Card} from "~components/card"
 
+import {Card} from "~components/card"
 import {getCardBySlug, getCardSlugs} from "~lib/graph-cms"
 
 interface Props {
   card: Card
 }
 const CardItemPage = ({card}: Props) => {
-  console.log({card})
   return (
     <div>
       <div>
         <h1>{card.name}</h1>
       </div>
       <div className="max-w-[25rem]">
+        {/* TODO different card */}
         <Card
           card={card}
           addToCart={() => {
-            console.log("Click")
+            // console.log("Click")
           }}
         />
       </div>
