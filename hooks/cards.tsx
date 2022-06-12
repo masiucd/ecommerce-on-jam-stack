@@ -12,7 +12,7 @@ const CARDS_QUERY = gql`
     }
   }
 `
-const useCards = (form: number, to: number) => {
+const useCards = () => {
   const {data, error} = useSWR(CARDS_QUERY, fetcher)
   return {data, error}
 }
