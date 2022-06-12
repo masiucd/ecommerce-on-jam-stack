@@ -5,16 +5,24 @@ import React, {FC, Fragment} from "react"
 
 import Cart from "~components/icons/cart"
 import navItems from "~data/nav-items.json"
-import {readOnlyCartAtom} from "~state/cart"
+import useHasMounted from "~hooks/mounted"
+import {cartItemsStorageAtom, readOnlyCartAtom} from "~state/cart"
 
 const CartBox = () => {
+  const mounted = useHasMounted()
   const [value] = useAtom(readOnlyCartAtom)
+  const [storedCartItems] = useAtom(cartItemsStorageAtom)
   return (
     <div className="cart flex items-center gap-2 min-w-[7rem] justify-center">
       <span role="image">
         <Cart />
       </span>
-      <span>${value.total.toFixed(2)}</span>
+      <span>
+        $
+        {mounted && storedCartItems !== null
+          ? storedCartItems.total.toFixed(2)
+          : value.total.toFixed(2)}
+      </span>
     </div>
   )
 }

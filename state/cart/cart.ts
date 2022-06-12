@@ -1,4 +1,5 @@
 import {atom} from "jotai"
+import {atomWithStorage} from "jotai/utils"
 
 interface CartAtom {
   items: Card[]
@@ -9,7 +10,8 @@ const cartAtom = atom<CartAtom>({
   total: 0,
 })
 
+const cartItemsStorageAtom = atomWithStorage<CartAtom | null>("cartItems", null)
 const readOnlyCartAtom = atom(get => get(cartAtom))
 
-export {cartAtom, readOnlyCartAtom}
+export {cartAtom, readOnlyCartAtom, cartItemsStorageAtom}
 export type {CartAtom}

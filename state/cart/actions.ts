@@ -7,4 +7,7 @@ const addToCartAction = (card: Card, value: CartAtom) => ({
   total: value.total + card.price,
 })
 
-export {addToCartAction}
+const setCartData = (card: Card, value: CartAtom) =>
+  addToCartAction(card, value)
+
+export {setCartData}
