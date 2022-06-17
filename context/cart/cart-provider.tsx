@@ -6,8 +6,8 @@ interface State {
 }
 
 type Action =
-  | {type: "ADD_TO_CAR"; card: Card}
-  | {type: "REMOVE_FROM_CAR"; id: string}
+  | {type: "ADD_TO_CART"; card: Card}
+  | {type: "REMOVE_FROM_CART"; id: string}
   | {type: "CLEAR_CARD"}
 type Dispatch = (action: Action) => void
 const CartContext = createContext<State | null>(null)
@@ -19,13 +19,36 @@ interface Props {
 
 function reducer(state: State, action: Action) {
   switch (action.type) {
-    case "ADD_TO_CAR":
+    case "ADD_TO_CART":
       return {
         ...state,
+        items: state.items.map(cart =>
+          cart.id === action.card.id && action.card.quantity > 1
+            ? {...action.card, quantity: action.card.quantity + 1}
+            : {...action.card, quantity: 1}
+        ),
+        total: state.items.reduce(
+          (total, item) => total + item.quantity * item.price,
+          0
+        ),
+      }
+    case "REMOVE_FROM_CART":
+      return {
+        ...state,
+        items: state.items.filter(cart => cart.id !== action.id),
+        total: decreaseTotal(state, action.id),
       }
     default:
       return state
   }
+}
+
+const decreaseTotal = (state: State, id: string) => {
+  const item = state.items.find(item => item.id === id)
+  if (item) {
+    return state.total - item.price
+  }
+  return state.total
 }
 
 const CartProvider: FC<Props> = ({children}) => {
