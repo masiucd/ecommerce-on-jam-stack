@@ -7,7 +7,9 @@ interface Props {
 }
 const Title = ({title, className, children}: Props) => {
   return children ? (
-    <aside className={`text-2xl md:text-4xl  ${className}`}>{children}</aside>
+    <aside className={`text-2xl md:text-4xl mb-5 ${className}`}>
+      {children}
+    </aside>
   ) : (
     <h1 className={className}>{title}</h1>
   )

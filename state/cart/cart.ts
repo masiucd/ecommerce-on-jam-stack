@@ -5,13 +5,13 @@ interface CartAtom {
   items: Card[]
   total: number
 }
-const cartAtom = atom<CartAtom>({
+
+const cartItemsStorageAtom = atomWithStorage<CartAtom>("cartItems", {
   items: [],
   total: 0,
 })
+const readOnlyCartItemsAtom = atom(get => get(cartItemsStorageAtom).items)
+const readOnlyCartTotalAtom = atom(get => get(cartItemsStorageAtom).total)
 
-const cartItemsStorageAtom = atomWithStorage<CartAtom | null>("cartItems", null)
-const readOnlyCartAtom = atom(get => get(cartAtom))
-
-export {cartAtom, readOnlyCartAtom, cartItemsStorageAtom}
+export {readOnlyCartItemsAtom, readOnlyCartTotalAtom, cartItemsStorageAtom}
 export type {CartAtom}

@@ -3,7 +3,7 @@ import Highlighted from "~components/elements/highlighted"
 import {CallToActions} from "./cta"
 
 const Description = () => (
-  <aside className="flex flex-col justify-evenly m-auto p-2 mb-4 leading-7	">
+  <aside className="flex flex-col justify-evenly m-auto p-2 mb-5">
     <h3 className="text-2xl mb-2">Digital art for the people!</h3>
     <p>
       Painting is my second passion after{" "}

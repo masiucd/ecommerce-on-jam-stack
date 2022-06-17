@@ -27,3 +27,5 @@ const useToggle = (initialState = false): UseToggle => {
 }
 
 export default useToggle
+
+export type {UseToggle}

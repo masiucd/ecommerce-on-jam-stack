@@ -8,26 +8,20 @@ import {Description} from "~components/home"
 import {InnerLayout, Layout} from "~components/layout"
 import Title from "~components/title"
 import {getAllCardImages} from "~lib/graph-cms"
-import {
-  CartAtom,
-  cartAtom,
-  cartItemsStorageAtom,
-  setCartData,
-} from "~state/cart"
 
 interface Props {
   cards: Card[]
 }
 
 const Home = ({cards}: Props): JSX.Element => {
-  const [, updateValue] = useAtom(cartAtom)
-  const [, updateStorage] = useAtom(cartItemsStorageAtom)
+  // const [, updateValue] = useAtom(cartAtom)
+  // const [, updateStorage] = useAtom(cartItemsStorageAtom)
 
   return (
     <Fragment>
-      <Title className="md:text-lg px-2 max-w-4xl mb-5">
-        <h1 className="text-4xl bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-violet-500 drop-shadow-lg">
-          Masiu&apos;s Sick images
+      <Title className="md:text-lg px-2 leading-8">
+        <h1 className="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-violet-500 drop-shadow-lg mb-1 p-0">
+          Masiu&apos;s Sick cards
         </h1>
       </Title>
       <Description />
@@ -41,8 +35,8 @@ const Home = ({cards}: Props): JSX.Element => {
               key={card.id}
               card={card}
               addToCart={() => {
-                updateValue(value => setCartData(card, value))
-                updateStorage(value => setCartData(card, value as CartAtom))
+                // updateValue(value => setCartData(card, value))
+                // updateStorage(value => setCartData(card, value as CartAtom))
               }}
             />
           ))}
