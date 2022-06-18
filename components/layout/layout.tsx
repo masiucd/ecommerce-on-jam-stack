@@ -1,5 +1,5 @@
+import {CartProvider, useCartState} from "context/cart/cart-provider"
 import {AnimatePresence, motion} from "framer-motion"
-import {useAtom} from "jotai"
 import Head from "next/head"
 import Link from "next/link"
 import React, {FC, Fragment} from "react"
@@ -8,7 +8,6 @@ import Cart from "~components/icons/cart"
 import navItems from "~data/nav-items.json"
 import useHasMounted from "~hooks/mounted"
 import useToggle, {UseToggle} from "~hooks/toggle"
-import {readOnlyCartItemsAtom, readOnlyCartTotalAtom} from "~state/cart"
 
 interface CartBoxProps {
   on: boolean
@@ -16,7 +15,7 @@ interface CartBoxProps {
 }
 const CartBox = ({on, handlers}: CartBoxProps) => {
   const mounted = useHasMounted()
-  const [value] = useAtom(readOnlyCartTotalAtom)
+  const {total} = useCartState()
   return (
     <div className="cart flex items-center gap-2 min-w-[7rem] justify-center">
       <button
@@ -28,7 +27,7 @@ const CartBox = ({on, handlers}: CartBoxProps) => {
           <Cart on={on} />
         </span>
       </button>
-      <span>${mounted && value && value.toFixed(2)}</span>
+      <span>${mounted && total.toFixed(2)}</span>
     </div>
   )
 }
@@ -48,8 +47,8 @@ const LayoutTitle = ({styles = ""}: LayoutTitleProps) => (
 
 const Header = () => {
   const [on, handlers] = useToggle()
-  const [cartItems] = useAtom(readOnlyCartItemsAtom)
-  console.log("cartItems", cartItems)
+  const {items} = useCartState()
+  console.log("items", items)
   return (
     <header className="h-[10vh] mb-3 bg-slate-800 flex items-center text-slate-100 shadow-md">
       <div className="w-[90%] md:w-[80%] m-auto  flex justify-between">
@@ -87,8 +86,8 @@ const Header = () => {
             </div>
 
             <ul>
-              {cartItems.length > 0
-                ? cartItems.map(item => (
+              {items.length > 0
+                ? items.map(item => (
                     <li key={item.id}>
                       {item.name}
                       {item.quantity}
@@ -127,8 +126,10 @@ const Layout: FC<Props> = ({children, title = "Sick imags"}) => (
       <meta name="description" content="Sick images to support Ukraine" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Header />
-    {children}
+    <CartProvider>
+      <Header />
+      {children}
+    </CartProvider>
     <Footer />
   </Fragment>
 )

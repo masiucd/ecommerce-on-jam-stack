@@ -9,6 +9,7 @@ type Action =
   | {type: "ADD_TO_CART"; card: Card}
   | {type: "REMOVE_FROM_CART"; id: string}
   | {type: "CLEAR_CARD"}
+
 type Dispatch = (action: Action) => void
 const CartContext = createContext<State | null>(null)
 const DispatchContext = createContext<Dispatch | null>(null)
@@ -17,20 +18,23 @@ interface Props {
   children: React.ReactNode
 }
 
+function addToCart(state: State, card: Card) {
+  const cardInCart = state.items.find(item => item.id === card.id)
+  if (cardInCart) {
+    return state.items.map(item =>
+      item.id === card.id ? {...item, quantity: item.quantity + 1} : item
+    )
+  }
+  return [...state.items, {...card, quantity: 1}]
+}
+
 function reducer(state: State, action: Action) {
   switch (action.type) {
     case "ADD_TO_CART":
       return {
         ...state,
-        items: state.items.map(cart =>
-          cart.id === action.card.id && action.card.quantity > 1
-            ? {...action.card, quantity: action.card.quantity + 1}
-            : {...action.card, quantity: 1}
-        ),
-        total: state.items.reduce(
-          (total, item) => total + item.quantity * item.price,
-          0
-        ),
+        items: addToCart(state, action.card),
+        total: state.total + action.card.price,
       }
     case "REMOVE_FROM_CART":
       return {

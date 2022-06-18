@@ -1,4 +1,4 @@
-import {useAtom} from "jotai"
+import {useCartDispatch, useCartState} from "context/cart/cart-provider"
 import type {GetStaticProps} from "next/types"
 import {Fragment, ReactElement} from "react"
 
@@ -14,8 +14,9 @@ interface Props {
 }
 
 const Home = ({cards}: Props): JSX.Element => {
-  // const [, updateValue] = useAtom(cartAtom)
-  // const [, updateStorage] = useAtom(cartItemsStorageAtom)
+  const dispatch = useCartDispatch()
+  const state = useCartState()
+  console.log("state", state)
 
   return (
     <Fragment>
@@ -35,6 +36,7 @@ const Home = ({cards}: Props): JSX.Element => {
               key={card.id}
               card={card}
               addToCart={() => {
+                dispatch({type: "ADD_TO_CART", card})
                 // updateValue(value => setCartData(card, value))
                 // updateStorage(value => setCartData(card, value as CartAtom))
               }}
