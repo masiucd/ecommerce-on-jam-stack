@@ -20,5 +20,16 @@
     "description": {
       "text": "About card-2"
     }
+  },
+  {
+    "id": "asdas213asdasdas3",
+    "name": "cat",
+    "image": "cat",
+    "cardSlug": "cat",
+    "price": 3.45,
+    "quantity": 0,
+    "description": {
+      "text": "About card-3"
+    }
   }
 ]
