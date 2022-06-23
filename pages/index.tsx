@@ -1,5 +1,7 @@
-import {useCartDispatch, useCartState} from "context/cart/cart-provider"
+import {useCartDispatch} from "context/cart/cart-provider"
+import fs from "fs"
 import type {GetStaticProps} from "next/types"
+import {join} from "path"
 import {Fragment, ReactElement} from "react"
 
 import {Card} from "~components/card"
@@ -15,8 +17,6 @@ interface Props {
 
 const Home = ({cards}: Props): JSX.Element => {
   const dispatch = useCartDispatch()
-  const state = useCartState()
-  console.log("state", state)
 
   return (
     <Fragment>
@@ -57,7 +57,17 @@ Home.getLayout = function (page: ReactElement): JSX.Element {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const cards = await getAllCardImages()
+  let cards
+  if (process.env.NODE_ENV === "production") {
+    cards = await getAllCardImages()
+  } else {
+    const mocked = fs.readFileSync(
+      join(process.cwd(), "data/mocked-cards.json"),
+      "utf8"
+    )
+    const parsedData = JSON.parse(mocked) as Array<Card>
+    cards = parsedData.slice(0, 6)
+  }
   return {
     props: {
       cards,

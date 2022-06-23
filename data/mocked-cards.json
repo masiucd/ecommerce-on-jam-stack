@@ -1,0 +1,24 @@
+[
+  {
+    "id": "21312dasdasdl#olo",
+    "name": "bird",
+    "image": "bird",
+    "cardSlug": "bird",
+    "price": 3.45,
+    "quantity": 0,
+    "description": {
+      "text": "About card-1"
+    }
+  },
+  {
+    "id": "asdas213123",
+    "name": "orange",
+    "image": "orange",
+    "cardSlug": "orange",
+    "price": 2.15,
+    "quantity": 0,
+    "description": {
+      "text": "About card-2"
+    }
+  }
+]

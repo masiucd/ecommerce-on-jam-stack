@@ -11,6 +11,7 @@ type CardProps = {
   singleCard?: boolean
 }
 const Card = ({card, addToCart, singleCard = false}: CardProps) => {
+  console.log({card})
   return (
     <motion.div
       role="grid-cell"
@@ -35,30 +36,33 @@ const Card = ({card, addToCart, singleCard = false}: CardProps) => {
 interface CardImageProps {
   image: string
 }
-const CardImage = ({image}: CardImageProps) => (
-  <div className="relative after:content-[''] after:w-full after:h-full after:bg-slate-800 after:absolute after:left-0 after:top-0 after:opacity-30">
-    <Image
-      src={`/images/${image}.jpg`}
-      alt={`Picture of for image ${image}`}
-      layout="responsive"
-      width={500}
-      height={500}
-      quality={100}
-      placeholder="empty"
-      objectFit="cover"
-    />
-  </div>
-)
+const CardImage = ({image}: CardImageProps) => {
+  console.log("image", image)
+  return (
+    <div className="relative after:content-[''] after:w-full after:h-full after:bg-slate-800 after:absolute after:left-0 after:top-0 after:opacity-30">
+      <Image
+        src={`/images/${image}.jpg`}
+        alt={`Picture of for image ${image}`}
+        layout="responsive"
+        width={500}
+        height={500}
+        quality={100}
+        placeholder="empty"
+        objectFit="cover"
+      />
+    </div>
+  )
+}
 
 const ActionText = ({card, addToCart}: CardProps) => {
   const {name, price, cardSlug} = card
   return (
     <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:text-xl  opacity-0 group-hover:opacity-100 group-hover:top-1/2  transition-all duration-[800ms] ease-in-out w-full z-10 text-slate-900">
       <div className="flex flex-col p-1 items-center justify-center w-full">
-        <div className="flex gap-2 border-b-2 mb-2 ">
+        <div className="flex gap-2 border-b-2 mb-2 items-center text-[1.1rem]">
           <Link href={`/cards/${cardSlug}`}>
             <motion.a
-              className="hover:text-teal-700 mb-1 cursor-pointer"
+              className="hover:text-teal-700 mb-1 cursor-pointer text-ellipsis overflow-hidden inline-block "
               animate={{scale: 1.1}}
               whileHover={{
                 scale: 1,
