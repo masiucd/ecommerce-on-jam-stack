@@ -10,6 +10,7 @@ import {Description} from "~components/home"
 import {InnerLayout, Layout} from "~components/layout"
 import Title from "~components/title"
 import {getAllCardImages} from "~lib/graph-cms"
+import {getMockedCards} from "~lib/mocked-cards"
 
 interface Props {
   cards: Card[]
@@ -61,12 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
   if (process.env.NODE_ENV === "production") {
     cards = await getAllCardImages()
   } else {
-    const mocked = fs.readFileSync(
-      join(process.cwd(), "data/mocked-cards.json"),
-      "utf8"
-    )
-    const parsedData = JSON.parse(mocked) as Array<Card>
-    cards = parsedData.slice(0, 6)
+    cards = getMockedCards()
   }
   return {
     props: {
