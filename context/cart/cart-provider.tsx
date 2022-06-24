@@ -2,7 +2,6 @@ import {createContext, FC, useContext, useEffect, useReducer} from "react"
 
 interface State {
   items: Card[]
-  total: number
 }
 
 type Action =
@@ -41,7 +40,6 @@ function reducer(state: State, action: Action) {
       return {
         ...state,
         items: addToCart(state, action.card),
-        total: state.total + action.card.price,
       }
     case "DECREASE_CART_ITEM":
       return {
@@ -55,33 +53,25 @@ function reducer(state: State, action: Action) {
       return {
         ...state,
         items: action.items,
-        total: action.items.reduce(
-          (total, item) => total + item.price * item.quantity,
-          0
-        ),
       }
     case "REMOVE_FROM_CART":
       return {
         ...state,
         items: state.items.filter(cart => cart.id !== action.id),
-        total: decreaseTotal(state, action.id),
       }
     default:
       return state
   }
 }
 
-const decreaseTotal = (state: State, id: string) => {
-  const item = state.items.find(item => item.id === id)
-  if (item) {
-    return state.total - item.price
-  }
-  return state.total
-}
+const calculateTotalPrice = (items: Array<Card>): number =>
+  items.reduce((acc, item) => acc + item.quantity * item.price, 0)
+
+const calculateTotalPriceForItem = (item: Card): string =>
+  `${(item.quantity * item.price).toFixed(2)}$`
 
 const CartProvider: FC<Props> = ({children}) => {
-  const [state, dispatch] = useReducer(reducer, {items: [], total: 0})
-
+  const [state, dispatch] = useReducer(reducer, {items: []})
   return (
     <CartContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
@@ -98,17 +88,17 @@ const useCartState = () => {
   }
   const dispatch = useCartDispatch()
   useEffect(() => {
-    const stored =
-      typeof window !== "undefined" && sessionStorage.getItem("cart")
+    const stored = typeof window !== "undefined" && localStorage.getItem("cart")
     const storedCartItems: Array<Card> = stored && JSON.parse(stored)
-    if (storedCartItems) {
+
+    if (storedCartItems.length) {
       dispatch({type: "UPDATE_CART", items: storedCartItems})
     }
   }, [dispatch])
 
   useEffect(() => {
-    const data = JSON.stringify(ctx.items)
-    typeof window !== "undefined" && localStorage.setItem("cart", data)
+    const storedItems = JSON.stringify(ctx.items)
+    typeof window !== "undefined" && localStorage.setItem("cart", storedItems)
   }, [ctx.items])
 
   return ctx
@@ -122,4 +112,10 @@ const useCartDispatch = () => {
   return dispatch
 }
 
-export {CartProvider, useCartState, useCartDispatch}
+export {
+  CartProvider,
+  useCartState,
+  useCartDispatch,
+  calculateTotalPrice,
+  calculateTotalPriceForItem,
+}
