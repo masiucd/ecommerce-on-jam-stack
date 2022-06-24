@@ -8,6 +8,7 @@ type Card = {
   description: {
     text: string
   }
+  type: Array<string>
 }
 
 type HashMap<T> = {

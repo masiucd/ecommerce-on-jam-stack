@@ -7,6 +7,7 @@ import {Grid} from "~components/elements/grid"
 import {InnerLayout, Layout} from "~components/layout"
 import Title from "~components/title"
 import {getAllCardImages} from "~lib/graph-cms"
+import {getMockedCards} from "~lib/mocked-cards"
 
 // const fetcher = (query: string) =>
 //   request(process.env.NEXT_PUBLIC_API_KEY_GRAPHCMS_PROJECT_API ?? "", query)
@@ -20,7 +21,7 @@ import {getAllCardImages} from "~lib/graph-cms"
 //   }
 // `
 
-const FIRST_CARDS = 8
+const FIRST_CARDS = 9
 
 interface Props {
   cards: Card[]
@@ -62,7 +63,12 @@ const CardsPage = ({cards}: Props) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const cards = await getAllCardImages(FIRST_CARDS)
+  let cards
+  if (process.env.NODE_ENV === "production") {
+    cards = await getAllCardImages(FIRST_CARDS)
+  } else {
+    cards = getMockedCards(0, 9)
+  }
   return {
     props: {
       cards,

@@ -13,6 +13,7 @@ const ALL_CARDS_QUERY = gql`
       image
       price
       cardSlug
+      type
     }
   }
 `
@@ -37,6 +38,7 @@ const CARD_BY_SLUG_QUERY = gql`
       description {
         text
       }
+      type
     }
   }
 `

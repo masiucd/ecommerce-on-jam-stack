@@ -73,8 +73,8 @@ const Header = () => {
               on ? "bg-slate-900/50" : null
             }`}
           >
-            <div className="ml-auto bg-slate-50 w-full md:w-[40rem] h-full z-20 opacity-100">
-              <div className="border border-red-500 flex items-center p-2">
+            <div className="ml-auto bg-slate-50 w-full md:w-[40rem] h-full z-20 opacity-100 flex flex-col">
+              <div className="shadow flex items-center p-2 bg-slate-100">
                 <h3 className="text-3xl">Your cart</h3>
                 <button
                   type="button"
@@ -85,6 +85,16 @@ const Header = () => {
                 </button>
               </div>
               <CartItemsList items={items} />
+              <div className="cart-footer mt-auto p-2 shadow-md bg-slate-100 ">
+                <div className="flex justify-end gap-3">
+                  <Button>
+                    <span>Clear cart</span>
+                  </Button>
+                  <Button className="mr-2">
+                    <span>Checkout</span>
+                  </Button>
+                </div>
+              </div>
             </div>
           </motion.aside>
         )}
