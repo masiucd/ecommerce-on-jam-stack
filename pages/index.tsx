@@ -1,7 +1,5 @@
 import {useCartDispatch} from "context/cart/cart-provider"
-import fs from "fs"
 import type {GetStaticProps} from "next/types"
-import {join} from "path"
 import {Fragment, ReactElement} from "react"
 
 import {Card} from "~components/card"
@@ -38,8 +36,6 @@ const Home = ({cards}: Props): JSX.Element => {
               card={card}
               addToCart={() => {
                 dispatch({type: "ADD_TO_CART", card})
-                // updateValue(value => setCartData(card, value))
-                // updateStorage(value => setCartData(card, value as CartAtom))
               }}
             />
           ))}

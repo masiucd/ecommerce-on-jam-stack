@@ -48,7 +48,6 @@ const LayoutTitle = ({styles = ""}: LayoutTitleProps) => (
 const Header = () => {
   const [on, handlers] = useToggle()
   const {items} = useCartState()
-
   return (
     <header className="h-[10vh] mb-3 bg-slate-800 flex items-center text-slate-100 shadow-md">
       <div className="w-[90%] md:w-[80%] m-auto  flex justify-between">

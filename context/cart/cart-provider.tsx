@@ -90,13 +90,16 @@ const CartProvider: FC<Props> = ({children}) => {
 const useCartState = () => {
   const ctx = useContext(CartContext)
   const stored = typeof window !== "undefined" && sessionStorage.getItem("cart")
-  const f = stored && JSON.parse(stored)
-  // console.log({f})
-
+  const storedCartItems = stored && (JSON.parse(stored) as Array<Card>)
   if (!ctx) {
     throw new Error("useCartState must be used within a CartProvider")
   }
-
+  if (storedCartItems) {
+    return {
+      items: storedCartItems,
+      total: storedCartItems.reduce((acc, item) => acc + item.price, 0),
+    }
+  }
   return ctx
 }
 
