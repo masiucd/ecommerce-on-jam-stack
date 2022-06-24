@@ -1,6 +1,7 @@
 import {CartProvider, useCartState} from "context/cart/cart-provider"
 import {AnimatePresence, motion} from "framer-motion"
 import Head from "next/head"
+import Image from "next/image"
 import Link from "next/link"
 import React, {FC, Fragment} from "react"
 
@@ -18,11 +19,7 @@ const CartBox = ({on, handlers}: CartBoxProps) => {
   const {total} = useCartState()
   return (
     <div className="cart flex items-center gap-2 min-w-[7rem] justify-center">
-      <button
-        type="button"
-        onClick={handlers.toggle}
-        className={`${on ? "border-2 border-white p-1 rounded-md" : ""} `}
-      >
+      <button type="button" onClick={handlers.toggle}>
         <span role="image">
           <Cart on={on} />
         </span>
@@ -68,32 +65,54 @@ const Header = () => {
       <AnimatePresence>
         {on && (
           <motion.aside
-            initial={{opacity: 0.45, x: "100%"}}
-            animate={{opacity: 1, x: 0}}
-            exit={{opacity: 0.55, x: "100%"}}
-            transition={{duration: 0.45, ease: "easeInOut"}}
-            className="fixed top-0 right-0 h-full md:w-3/5 w-full bg-slate-100 z-10 text-slate-900 shadow-sm"
+            initial={{x: "100%"}}
+            animate={{x: 0}}
+            exit={{x: "100%"}}
+            transition={{duration: 0.25, ease: "easeOut"}}
+            className={`fixed top-0 right-0 h-full w-full  z-10 text-slate-900 ${
+              on ? "bg-slate-900/50" : null
+            }`}
           >
-            <div className="border border-red-500 flex items-center p-2">
-              <button
-                type="button"
-                onClick={handlers.toFalse}
-                className="text-slate-900 z-30 text-2xl p-1 ml-auto hover:text-teal-500"
-              >
-                <span role="image flex">X</span>
-              </button>
-            </div>
+            <div className="ml-auto bg-slate-50 w-full md:w-[40rem] h-full z-20 opacity-100">
+              <div className="border border-red-500 flex items-center p-2">
+                <h3 className="text-3xl">Your cart</h3>
+                <button
+                  type="button"
+                  onClick={handlers.toFalse}
+                  className="text-slate-900 z-30 text-2xl p-1 ml-auto hover:text-teal-500"
+                >
+                  <span role="image flex">❌</span>
+                </button>
+              </div>
 
-            <ul>
-              {items.length > 0
-                ? items.map(item => (
-                    <li key={item.id}>
-                      {item.name}
-                      {item.quantity}
-                    </li>
-                  ))
-                : null}
-            </ul>
+              <ul className="p-2">
+                {items.length > 0
+                  ? items.map(item => (
+                      <li
+                        key={item.id}
+                        className="flex gap-2  mb-5 shadow-sm items-center "
+                      >
+                        <div>
+                          <Image
+                            src={`/images/${item.image}.jpg`}
+                            alt={`Picture of for image ${item.image}`}
+                            // layout="responsive"
+                            width={150}
+                            height={150}
+                            quality={100}
+                            // placeholder="empty"
+                            // objectFit="cover"
+                          />
+                        </div>
+                        <div className="flex gap-2">
+                          <p>{item.name}</p>
+                          <p>{item.quantity}</p>
+                        </div>
+                      </li>
+                    ))
+                  : null}
+              </ul>
+            </div>
           </motion.aside>
         )}
       </AnimatePresence>

@@ -1,4 +1,4 @@
-import {createContext, FC, useContext, useReducer} from "react"
+import {createContext, FC, useContext, useEffect, useReducer} from "react"
 
 interface State {
   items: Card[]
@@ -55,6 +55,10 @@ function reducer(state: State, action: Action) {
       return {
         ...state,
         items: action.items,
+        total: action.items.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        ),
       }
     case "REMOVE_FROM_CART":
       return {
@@ -89,17 +93,24 @@ const CartProvider: FC<Props> = ({children}) => {
 
 const useCartState = () => {
   const ctx = useContext(CartContext)
-  const stored = typeof window !== "undefined" && sessionStorage.getItem("cart")
-  const storedCartItems = stored && (JSON.parse(stored) as Array<Card>)
   if (!ctx) {
     throw new Error("useCartState must be used within a CartProvider")
   }
-  if (storedCartItems) {
-    return {
-      items: storedCartItems,
-      total: storedCartItems.reduce((acc, item) => acc + item.price, 0),
+  const dispatch = useCartDispatch()
+  useEffect(() => {
+    const stored =
+      typeof window !== "undefined" && sessionStorage.getItem("cart")
+    const storedCartItems: Array<Card> = stored && JSON.parse(stored)
+    if (storedCartItems) {
+      dispatch({type: "UPDATE_CART", items: storedCartItems})
     }
-  }
+  }, [dispatch])
+
+  useEffect(() => {
+    const data = JSON.stringify(ctx.items)
+    typeof window !== "undefined" && localStorage.setItem("cart", data)
+  }, [ctx.items])
+
   return ctx
 }
 
