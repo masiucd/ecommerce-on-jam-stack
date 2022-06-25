@@ -1,6 +1,7 @@
 // import request, {gql} from "graphql-request"
+import Fuse from "fuse.js"
 import type {GetStaticProps} from "next/types"
-import React, {ReactElement, useState} from "react"
+import React, {ChangeEvent, ReactElement, useState} from "react"
 
 import {Card} from "~components/card"
 import FilterBox from "~components/cards/filter-box"
@@ -23,9 +24,14 @@ import {getMockedTypes} from "~lib/mocked-types"
 //   }
 // `
 
-function renderCards(cards: Card[], selectedType: string | null) {
+function renderCards(
+  cards: Card[],
+  filteredCards: null | Card[],
+  selectedType: string | null
+) {
+  const cardsToMapOver = filteredCards !== null ? filteredCards : cards
   if (selectedType !== null) {
-    return cards
+    return cardsToMapOver
       .filter(card => card.type.includes(selectedType))
       .map(card => (
         <Card
@@ -37,7 +43,7 @@ function renderCards(cards: Card[], selectedType: string | null) {
         />
       ))
   }
-  return cards.map(card => (
+  return cardsToMapOver.map(card => (
     <Card
       key={card.id}
       card={card}
@@ -57,12 +63,20 @@ interface Props {
 
 const CardsPage = ({cards, types}: Props) => {
   const [selected, setSelected] = useState<null | string>(null)
+  const [searchQuery, setSearchQuery] = useState<string>("")
   // const {data, error} = useSWR(foo, fetcher)
   // if (!data) {
   //   return <div>loading</div>
   // }
 
+  let filteredCards: null | Card[] = null
   // console.log(data)
+  if (searchQuery) {
+    const fuse = new Fuse(cards, {
+      keys: ["name"],
+    })
+    filteredCards = fuse.search(searchQuery).map(({item}) => item)
+  }
 
   return (
     <section>
@@ -80,9 +94,12 @@ const CardsPage = ({cards, types}: Props) => {
         setSelectedType={(type: string | null) => {
           setSelected(type)
         }}
+        searchByText={(e: ChangeEvent<HTMLInputElement>) => {
+          setSearchQuery(e.target.value)
+        }}
       />
       {/* TODO client side fetch if we want to lazy Load with pagination? */}
-      <Grid>{renderCards(cards, selected)}</Grid>
+      <Grid>{renderCards(cards, filteredCards, selected)}</Grid>
     </section>
   )
 }

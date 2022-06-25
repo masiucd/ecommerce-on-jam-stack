@@ -1,11 +1,14 @@
+import {ChangeEvent} from "react"
+
 import Button from "~components/elements/button"
 
 interface Props {
   types: string[]
   selected: string | null
   setSelectedType: (type: string | null) => void
+  searchByText: (e: ChangeEvent<HTMLInputElement>) => void
 }
-const FilterBox = ({types, selected, setSelectedType}: Props) => (
+const FilterBox = ({types, selected, setSelectedType, searchByText}: Props) => (
   <div className="shadow rounded-sm flex justify-between flex-col md:flex-row px-2 ml-2 mb-5 gap-3">
     <ul className="flex p-1 flex-wrap flex-1 justify-between gap-2">
       {types.map(type => (
@@ -37,7 +40,12 @@ const FilterBox = ({types, selected, setSelectedType}: Props) => (
         <label htmlFor="search" className="label-primary">
           Search
         </label>
-        <input type="text" id="search" placeholder="Cool panda..." />
+        <input
+          type="text"
+          id="search"
+          placeholder="Cool panda..."
+          onChange={searchByText}
+        />
       </div>
     </div>
   </div>
