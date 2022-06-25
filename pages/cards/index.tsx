@@ -1,8 +1,9 @@
 // import request, {gql} from "graphql-request"
 import type {GetStaticProps} from "next/types"
-import React, {ReactElement} from "react"
+import React, {ReactElement, useState} from "react"
 
 import {Card} from "~components/card"
+import FilterBox from "~components/cards/filter-box"
 import {Grid} from "~components/elements/grid"
 import {InnerLayout, Layout} from "~components/layout"
 import Title from "~components/title"
@@ -22,6 +23,31 @@ import {getMockedTypes} from "~lib/mocked-types"
 //   }
 // `
 
+function renderCards(cards: Card[], selectedType: string | null) {
+  if (selectedType !== null) {
+    return cards
+      .filter(card => card.type.includes(selectedType))
+      .map(card => (
+        <Card
+          key={card.id}
+          card={card}
+          addToCart={() => {
+            // console.log("Click")
+          }}
+        />
+      ))
+  }
+  return cards.map(card => (
+    <Card
+      key={card.id}
+      card={card}
+      addToCart={() => {
+        // console.log("Click")
+      }}
+    />
+  ))
+}
+
 const FIRST_CARDS = 9
 
 interface Props {
@@ -30,48 +56,33 @@ interface Props {
 }
 
 const CardsPage = ({cards, types}: Props) => {
+  const [selected, setSelected] = useState<null | string>(null)
   // const {data, error} = useSWR(foo, fetcher)
   // if (!data) {
   //   return <div>loading</div>
   // }
 
   // console.log(data)
-  console.log("types", types)
 
   return (
     <section>
       <Title className="md:text-lg px-2 max-w-4xl m-auto mb-5">
-        <h1 className="text-3xl bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-violet-500 drop-shadow-lg ">
+        <h1 className="text-4xl bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-violet-500 drop-shadow-lg ">
           Masiu&apos;s Sick images
         </h1>
-        <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-violet-500 drop-shadow-lg	">
+        <h2 className="bg-clip-text text-3xl text-transparent bg-gradient-to-r from-blue-500 to-violet-500 drop-shadow-lg	">
           All available cards
-        </p>
+        </h2>
       </Title>
-
-      {/* TODO */}
-      {/* filer component filter on type */}
-      <div className="border-2 flex flex-wrap max-w-md px-2 m-auto mb-5">
-        <ul className="flex p-1 max-h-28 border border-red-400 flex-1 justify-between">
-          {types.map(type => (
-            <li key={type}>{type}</li>
-          ))}
-        </ul>
-      </div>
-      {/* TODO */}
+      <FilterBox
+        types={types}
+        selected={selected}
+        setSelectedType={(type: string | null) => {
+          setSelected(type)
+        }}
+      />
       {/* TODO client side fetch if we want to lazy Load with pagination? */}
-      <Grid>
-        {cards.map(card => (
-          <Card
-            key={card.id}
-            card={card}
-            addToCart={() => {
-              // updateValue(value => addToCartAction(card, value))
-              // console.log("Click")
-            }}
-          />
-        ))}
-      </Grid>
+      <Grid>{renderCards(cards, selected)}</Grid>
     </section>
   )
 }
@@ -81,8 +92,6 @@ export const getStaticProps: GetStaticProps = async () => {
   let types: Array<string>
   if (process.env.NODE_ENV === "production") {
     cards = await getAllCardImages(FIRST_CARDS)
-    // TODO make unique type names
-
     const typesList = cards.flatMap(card => card.type)
     types = Array.from(new Set(typesList))
   } else {
