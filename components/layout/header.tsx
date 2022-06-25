@@ -20,7 +20,7 @@ const CartBox = ({on, handlers}: CartBoxProps) => {
   const mounted = useHasMounted()
   const {items} = useCartState()
   return (
-    <div className="cart flex items-center gap-2 min-w-[7rem] justify-center">
+    <div className="cart flex items-center gap-2 w-24 justify-center">
       <button type="button" onClick={handlers.toggle}>
         <span role="image">
           <Cart on={on} />
@@ -33,7 +33,6 @@ const CartBox = ({on, handlers}: CartBoxProps) => {
 
 const Header = () => {
   const [on, handlers] = useToggle()
-
   return (
     <header className="h-[10vh] mb-3 bg-slate-800 flex items-center text-slate-100 shadow-md">
       <div className="w-[90%] md:w-[80%] m-auto  flex justify-between">

@@ -1,37 +1,13 @@
 import {createContext, FC, useContext, useEffect, useReducer} from "react"
 
-interface State {
-  items: Card[]
-}
+import {addToCart, decreaseItem, increaseItem, removeItem} from "./lib"
+import type {Action, Dispatch, State} from "./types"
 
-type Action =
-  | {type: "ADD_TO_CART"; card: Card}
-  | {type: "DECREASE_CART_ITEM"; id: string}
-  | {type: "INCREASE_CART_ITEM"; id: string}
-  | {type: "REMOVE_FROM_CART"; id: string}
-  | {type: "UPDATE_CART"; items: Card[]}
-  | {type: "CLEAR_CART"}
-
-type Dispatch = (action: Action) => void
 const CartContext = createContext<State | null>(null)
 const DispatchContext = createContext<Dispatch | null>(null)
 
 interface Props {
   children: React.ReactNode
-}
-
-function addToCart(state: State, card: Card) {
-  const cardInCart = state.items.find(item => item.id === card.id)
-  if (cardInCart) {
-    const items = state.items.map(item =>
-      item.id === card.id ? {...item, quantity: item.quantity + 1} : item
-    )
-    sessionStorage.setItem("cart", JSON.stringify(items))
-    return items
-  }
-  const items = [...state.items, {...card, quantity: 1}]
-  sessionStorage.setItem("cart", JSON.stringify(items))
-  return items
 }
 
 function reducer(state: State, action: Action) {
@@ -44,10 +20,15 @@ function reducer(state: State, action: Action) {
     case "DECREASE_CART_ITEM":
       return {
         ...state,
+        items: decreaseItem(state, action.id),
       }
     case "INCREASE_CART_ITEM":
       return {
         ...state,
+        // items: state.items.map(item =>
+        //   item.id === action.id ? {...item, quantity: item.quantity + 1} : item
+        // ),
+        items: increaseItem(state, action.id),
       }
     case "UPDATE_CART":
       return {
@@ -57,15 +38,15 @@ function reducer(state: State, action: Action) {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        items: state.items.filter(cart => cart.id !== action.id),
+        items: removeItem(state, action.id),
       }
     default:
       return state
   }
 }
 
-const calculateTotalPrice = (items: Array<Card>): number =>
-  items.reduce((acc, item) => acc + item.quantity * item.price, 0)
+const calculateTotalPrice = (items: Array<Card>): string =>
+  items.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)
 
 const calculateTotalPriceForItem = (item: Card): string =>
   `${(item.quantity * item.price).toFixed(2)}$`

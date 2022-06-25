@@ -1,14 +1,16 @@
-import {
-  calculateTotalPriceForItem,
-  useCartDispatch,
-  useCartState,
-} from "context/cart/cart-provider"
 import {AnimatePresence, motion} from "framer-motion"
 import Image from "next/image"
 import {useRef} from "react"
 
 import Button from "~components/elements/button"
+import {XIcon} from "~components/icons/x"
 import {useClickAway} from "~hooks/click-away"
+
+import {
+  calculateTotalPriceForItem,
+  useCartDispatch,
+  useCartState,
+} from "../../context/cart/cart-provider"
 
 interface Props {
   on: boolean
@@ -47,7 +49,9 @@ const CartSide = ({on, toFalse}: Props) => {
                 onClick={toFalse}
                 className="text-slate-900 z-30 text-2xl p-1 ml-auto hover:text-teal-500"
               >
-                <span role="image flex">❌</span>
+                <span role="image flex">
+                  <XIcon />
+                </span>
               </button>
             </div>
             <CartItemsList items={items} />
@@ -93,7 +97,23 @@ const CartItemsList = ({items}: {items: Array<Card>}) => {
                   card: <HighLighter text={item.name} />
                 </p>
                 <p>
-                  quantity: <HighLighter text={item.quantity.toString()} />
+                  quantity:{" "}
+                  <button
+                    className="z-20"
+                    onClick={() => {
+                      dispatch({type: "DECREASE_CART_ITEM", id: item.id})
+                    }}
+                  >
+                    <span>&larr;</span>{" "}
+                  </button>{" "}
+                  <HighLighter text={item.quantity.toString()} />{" "}
+                  <button
+                    onClick={() => {
+                      dispatch({type: "INCREASE_CART_ITEM", id: item.id})
+                    }}
+                  >
+                    <span>&rarr;</span>
+                  </button>
                 </p>
                 <p>
                   price/item: <HighLighter text={`${item.price}$`} />
