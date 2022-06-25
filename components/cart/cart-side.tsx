@@ -57,10 +57,10 @@ const CartSide = ({on, toFalse}: Props) => {
             <CartItemsList items={items} />
             <div className="cart-footer mt-auto p-2 shadow-md bg-slate-100 ">
               <div className="flex justify-end gap-3">
-                <Button>
+                <Button disabled={items.length === 0}>
                   <span>Clear cart</span>
                 </Button>
-                <Button className="mr-2">
+                <Button className="mr-2" disabled={items.length === 0}>
                   <span>Checkout</span>
                 </Button>
               </div>
@@ -122,9 +122,8 @@ const CartItemsList = ({items}: {items: Array<Card>}) => {
                   total: <HighLighter text={calculateTotalPriceForItem(item)} />
                 </p>
               </div>
-              <div className=" ml-auto mt-auto ">
+              <div className="ml-auto mt-auto ">
                 <Button
-                  className=""
                   type="button"
                   onClick={() => {
                     dispatch({

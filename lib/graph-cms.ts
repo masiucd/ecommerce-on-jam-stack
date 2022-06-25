@@ -43,7 +43,8 @@ const CARD_BY_SLUG_QUERY = gql`
   }
 `
 
-const getAllCardImages = async (first = 6): Promise<HashMap<Array<Card>>> => {
+// const getAllCardImages = async (first = 6): Promise<HashMap<Array<Card>>> => {
+const getAllCardImages = async (first = 6): Promise<Array<Card>> => {
   const {cardImages} = await request(URL, ALL_CARDS_QUERY, {first})
   return cardImages
 }

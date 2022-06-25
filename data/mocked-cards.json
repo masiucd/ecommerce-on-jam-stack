@@ -8,7 +8,8 @@
     "quantity": 0,
     "description": {
       "text": "About card-1"
-    }
+    },
+    "type": ["animal"]
   },
   {
     "id": "asdas213123",
@@ -19,7 +20,8 @@
     "quantity": 0,
     "description": {
       "text": "About card-2"
-    }
+    },
+    "type": ["nature"]
   },
   {
     "id": "asdas213asdasdas3",
@@ -30,7 +32,8 @@
     "quantity": 0,
     "description": {
       "text": "About card-3"
-    }
+    },
+    "type": ["animal"]
   },
   {
     "id": "ffsa221####",
@@ -41,7 +44,8 @@
     "quantity": 0,
     "description": {
       "text": "About card-4"
-    }
+    },
+    "type": ["animal"]
   },
   {
     "id": "asdas213asdasdas",
@@ -52,7 +56,8 @@
     "quantity": 0,
     "description": {
       "text": "About card-5"
-    }
+    },
+    "type": ["nature"]
   },
   {
     "id": "#2ddds33",
@@ -63,7 +68,8 @@
     "quantity": 0,
     "description": {
       "text": "About card-6"
-    }
+    },
+    "type": ["art"]
   },
   {
     "id": "#9991212",
@@ -74,7 +80,8 @@
     "quantity": 0,
     "description": {
       "text": "About card-7"
-    }
+    },
+    "type": ["food"]
   },
   {
     "id": "#fr32FFFss",
@@ -85,7 +92,8 @@
     "quantity": 0,
     "description": {
       "text": "About card-8"
-    }
+    },
+    "type": ["sci-fi"]
   },
   {
     "id": "#4099oololo",
@@ -96,6 +104,7 @@
     "quantity": 0,
     "description": {
       "text": "About card-9"
-    }
+    },
+    "type": ["nature"]
   }
 ]

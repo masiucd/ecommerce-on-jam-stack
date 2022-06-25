@@ -7,6 +7,7 @@ type Props = {
   className?: string
   type?: "button" | "submit" | "reset" | undefined
   onClick?: () => void | undefined
+  disabled?: boolean
 }
 
 const Button: FC<Props> = ({
@@ -15,6 +16,7 @@ const Button: FC<Props> = ({
   className = "",
   type = "button",
   onClick,
+  disabled = false,
 }) => {
   if (href !== null) {
     return (
@@ -30,7 +32,8 @@ const Button: FC<Props> = ({
   return (
     <button
       type={type}
-      className={`border-2 border-teal-400 p-1 rounded-md shadow-sm hover:bg-teal-400 hover:border-slate-600 ${className}`}
+      disabled={disabled}
+      className={`border-2 border-teal-400 p-1 rounded-md shadow-sm hover:bg-teal-400 hover:border-slate-600 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       onClick={onClick}
     >
       {children}
