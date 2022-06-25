@@ -91,7 +91,7 @@ const useCartState = () => {
     const stored = typeof window !== "undefined" && localStorage.getItem("cart")
     const storedCartItems: Array<Card> = stored && JSON.parse(stored)
 
-    if (storedCartItems.length) {
+    if (Array.isArray(storedCartItems) && storedCartItems.length) {
       dispatch({type: "UPDATE_CART", items: storedCartItems})
     }
   }, [dispatch])
